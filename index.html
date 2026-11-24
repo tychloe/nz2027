@@ -1,0 +1,699 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<style>:root{padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}body{margin:0}img{max-width:100%}[hidden]{display:none!important}</style>
+</head>
+<body>
+<title>2027年踏入大洋洲(NZ)</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Zen+Maru+Gothic:wght@500;700&family=Noto+Sans+TC:wght@400;500;700&display=swap">
+<style>
+/* Layout: 藍染和紙旅行手帳 — 手機單欄；每日頁 = 標題 → 手繪地圖 → 時間軸 */
+:root{
+  --paper:#F3F2EC; --card:#FBFAF6; --ink:#1F2A3A; --ink-soft:#5B6472; --line:#E2DFD4;
+  --accent:#2E4A6B; --accent-soft:#E4E9F0; --on-accent:#FBFAF6;
+  --stamp:#C8452D; --stamp-soft:#F8ECE7;
+  --adult:#4E7A55; --adult-soft:#E3EDE4; --kfam:#A8730F; --kfam-soft:#F6EAD0;
+  --map-land:#EFEDE4; --map-sea:#D6E0E8; --map-water:#B6CADB; --map-coast:#8C9DB0; --map-mtn:#E2E0D6; --map-ink:#4F5B6B; --map-park:#DCE6D2;
+  --wash-sky:#E8EDF2; --wash-lake:#CEDBE7; --wash-grass:#EADFB8; --kiwi:#8A6A4A;
+  --font-display:"Zen Maru Gothic","Noto Sans TC","PingFang TC","Microsoft JhengHei",system-ui,sans-serif;
+  --font-body:"Noto Sans TC","PingFang TC","Microsoft JhengHei",system-ui,sans-serif;
+  --r:14px;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --paper:#141A22; --card:#1C2430; --ink:#E6E9EE; --ink-soft:#9AA4B2; --line:#2C3644;
+  --accent:#8FB0D6; --accent-soft:#22324A; --on-accent:#141A22;
+  --stamp:#EC7A62; --stamp-soft:#36231F;
+  --adult:#8CC195; --adult-soft:#22352A; --kfam:#E2B455; --kfam-soft:#3A301C;
+  --map-land:#222B36; --map-sea:#18222E; --map-water:#2E4866; --map-coast:#4A5A6E; --map-mtn:#2E3846; --map-ink:#AEB8C6; --map-park:#263526;
+  --wash-sky:#1B2430; --wash-lake:#243A52; --wash-grass:#3A3524; --kiwi:#B8956E;
+  color-scheme:dark}}
+:root[data-theme="dark"]{
+  --paper:#141A22; --card:#1C2430; --ink:#E6E9EE; --ink-soft:#9AA4B2; --line:#2C3644;
+  --accent:#8FB0D6; --accent-soft:#22324A; --on-accent:#141A22;
+  --stamp:#EC7A62; --stamp-soft:#36231F;
+  --adult:#8CC195; --adult-soft:#22352A; --kfam:#E2B455; --kfam-soft:#3A301C;
+  --map-land:#222B36; --map-sea:#18222E; --map-water:#2E4866; --map-coast:#4A5A6E; --map-mtn:#2E3846; --map-ink:#AEB8C6; --map-park:#263526;
+  --wash-sky:#1B2430; --wash-lake:#243A52; --wash-grass:#3A3524; --kiwi:#B8956E;
+  color-scheme:dark}
+*{box-sizing:border-box}
+body{background:var(--paper);color:var(--ink);font-family:var(--font-body);font-size:15px;line-height:1.6;-webkit-text-size-adjust:100%}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:10;background:var(--paper)}
+a{color:var(--accent)}
+.wrap{max-width:560px;margin:0 auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+h1,h2,h3{font-family:var(--font-display);font-weight:700;text-wrap:balance;margin:0}
+button{font:inherit;color:inherit}
+:focus-visible{outline:2px solid var(--accent);outline-offset:2px;border-radius:6px}
+
+.top{position:sticky;top:env(safe-area-inset-top,0px);z-index:5;background:var(--paper);border-bottom:1px solid var(--line)}
+.tabs{display:flex;gap:4px;overflow-x:auto;scrollbar-width:none;padding-block:10px}
+.tabs::-webkit-scrollbar{display:none}
+.tab{flex:0 0 auto;padding:7px 14px;border-radius:999px;text-decoration:none;color:var(--ink);font-family:var(--font-display);font-weight:500;font-size:15px;white-space:nowrap}
+.tab[aria-current="page"]{background:var(--accent);color:var(--on-accent)}
+.view{padding-block:16px 48px}
+
+/* 首頁 */
+.hero{border-radius:var(--r);overflow:hidden;line-height:0;margin-top:4px;border:1px solid var(--line);background:var(--card)}
+.hero svg{width:100%;height:auto;display:block}
+.eyebrow{font-size:12px;letter-spacing:.12em;color:var(--ink-soft);margin:18px 0 4px}
+.home-title{font-size:clamp(26px,7.4vw,34px);line-height:1.25}
+.who{color:var(--ink-soft);margin:8px 0 0}
+.facts{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin:18px 0 6px}
+.fact{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:10px 12px}
+.fact b{display:block;font-family:var(--font-display);font-size:22px;line-height:1.2;font-variant-numeric:tabular-nums;color:var(--accent)}
+.fact span{font-size:12px;color:var(--ink-soft)}
+.sec-h{font-size:18px;margin:26px 0 10px;display:flex;flex-wrap:wrap;align-items:baseline;gap:4px 8px}
+.sec-h small{font-family:var(--font-body);font-weight:400;font-size:12px;color:var(--ink-soft)}
+
+/* 地圖 */
+.map{background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:8px;margin:14px 0 0}
+.map svg{width:100%;height:auto;display:block;border-radius:10px}
+.map-foot{display:flex;flex-wrap:wrap;gap:8px;align-items:center;justify-content:space-between;padding:8px 4px 2px}
+.map-note{font-size:12px;color:var(--ink-soft)}
+.btn{display:inline-flex;align-items:center;gap:6px;padding:8px 14px;border-radius:999px;background:var(--accent);color:var(--on-accent);text-decoration:none;font-size:14px;font-weight:500;border:0;cursor:pointer}
+.btn svg{width:16px;height:16px}
+.legend{list-style:none;margin:6px 0 0;padding:8px 4px 2px;display:grid;grid-template-columns:1fr 1fr;gap:4px 12px;border-top:1px dashed var(--line);font-size:13px}
+.legend li{display:flex;gap:6px;align-items:baseline;min-width:0}
+.legend li span:last-child{min-width:0;overflow-wrap:anywhere;line-height:1.4}
+.dot{flex:0 0 auto;display:inline-grid;place-items:center;min-width:20px;height:20px;padding:0 4px;border-radius:999px;background:var(--accent);color:var(--on-accent);font-size:11px;font-weight:700;font-variant-numeric:tabular-nums;line-height:1}
+.dot.g-adult{background:var(--adult)} .dot.g-kfam{background:var(--kfam)} .dot.stay{background:var(--ink);color:var(--paper)}
+
+/* 天數卡片 */
+.days{list-style:none;margin:0;padding:0;display:grid;gap:8px}
+.day-card{display:grid;grid-template-columns:56px 1fr auto;gap:12px;align-items:center;background:var(--card);border:1px solid var(--line);border-radius:12px;padding:10px 12px;text-decoration:none;color:inherit}
+.day-card .d{font-family:var(--font-display);text-align:center;line-height:1.15;color:var(--accent)}
+.day-card .d b{display:block;font-size:20px;font-variant-numeric:tabular-nums}
+.day-card .d span{font-size:11px;color:var(--ink-soft)}
+.day-card .th{font-weight:500;min-width:0}
+.day-card .th small{display:block;color:var(--ink-soft);font-weight:400;font-size:12px}
+.day-card .n{font-size:12px;color:var(--ink-soft)}
+.split-mark{display:inline-block;font-size:11px;padding:0 6px;border-radius:6px;background:var(--kfam-soft);color:var(--kfam);margin-left:4px;font-weight:500}
+
+/* 每日頁 */
+.strip{display:flex;gap:6px;overflow-x:auto;scrollbar-width:none;padding-block:2px 10px}
+.strip::-webkit-scrollbar{display:none}
+.strip a{flex:0 0 auto;text-align:center;text-decoration:none;color:var(--ink);border:1px solid var(--line);background:var(--card);border-radius:10px;padding:4px 9px;font-size:12px;line-height:1.3;font-variant-numeric:tabular-nums}
+.strip a b{display:block;font-family:var(--font-display);font-size:15px}
+.strip a[aria-current="page"]{background:var(--accent);color:var(--on-accent);border-color:var(--accent)}
+.seg{display:grid;grid-template-columns:repeat(3,1fr);background:var(--card);border:1px solid var(--line);border-radius:999px;padding:3px;margin:4px 0 0}
+.seg button{border:0;background:none;border-radius:999px;padding:7px 4px;font-weight:500;cursor:pointer;font-size:14px}
+.seg button[aria-pressed="true"]{background:var(--accent);color:var(--on-accent)}
+.seg button[data-v="adult"][aria-pressed="true"]{background:var(--adult);color:var(--card)}
+.seg button[data-v="kfam"][aria-pressed="true"]{background:var(--kfam);color:var(--card)}
+.day-meta{font-size:14px;color:var(--ink-soft);margin:16px 0 2px}
+.day-title{font-size:clamp(24px,6.6vw,30px);line-height:1.3}
+.tonight{margin:8px 0 0;font-size:15px}
+.tonight a{color:inherit;text-decoration-color:var(--line);text-underline-offset:3px}
+.today-drive{display:inline-flex;align-items:center;gap:6px;margin-top:8px;font-size:13px;font-weight:500;padding:4px 12px;border-radius:999px;background:var(--accent-soft);color:var(--accent)}
+.today-drive svg{width:16px;height:16px}
+
+.tl{list-style:none;margin:20px 0 0;padding:0}
+.it{position:relative;display:grid;grid-template-columns:58px 1fr;gap:10px;padding:12px 0;border-top:1px solid var(--line)}
+.tl > .it:first-child{border-top:0}
+.move + .it{border-top:0}
+.it .t{font-family:var(--font-display);font-size:14px;line-height:1.35;color:var(--ink-soft);font-variant-numeric:tabular-nums;overflow-wrap:anywhere}
+.it .t .tag{display:block;font-family:var(--font-body);font-size:11px}
+.it .body{min-width:0}
+.ttl{font-weight:700;display:flex;flex-wrap:wrap;gap:6px;align-items:baseline;line-height:1.45}
+.ttl .tx{min-width:0;overflow-wrap:anywhere}
+.chip{display:inline-block;font-size:11px;font-weight:500;padding:1px 7px;border-radius:999px;background:var(--accent-soft);color:var(--accent);white-space:nowrap}
+.chip.g-adult{background:var(--adult-soft);color:var(--adult)}
+.chip.g-kfam{background:var(--kfam-soft);color:var(--kfam)}
+.chip.opt{background:transparent;border:1px dashed var(--ink-soft);color:var(--ink-soft)}
+.chip.stay{background:var(--ink);color:var(--paper)}
+.chip.cat{background:transparent;border:1px solid var(--line);color:var(--ink-soft)}
+.it.g-adult .body{border-left:3px solid var(--adult);padding-left:10px}
+.it.g-kfam .body{border-left:3px solid var(--kfam);padding-left:10px}
+.it.optional .ttl .tx{color:var(--ink-soft)}
+.it.booked{background:var(--stamp-soft);border-radius:12px;padding:12px 10px;border-top:0;margin-top:6px}
+.it.booked + .it, .it.booked + .move{border-top:0}
+.it.booked .ttl,.it.booked .ttl + .note{padding-right:50px}
+.stamp{position:absolute;right:10px;top:10px;width:44px;height:44px;border-radius:50%;border:2px solid var(--stamp);color:var(--stamp);display:grid;place-items:center;font-family:var(--font-display);font-weight:700;font-size:13px;transform:rotate(-12deg);background:var(--card)}
+.stamp::after{content:"";position:absolute;inset:3px;border-radius:50%;border:1px solid var(--stamp);opacity:.6}
+.note{margin:4px 0 0;font-size:14px;color:var(--ink-soft);white-space:pre-line;overflow-wrap:anywhere}
+.links{display:flex;flex-wrap:wrap;gap:6px;margin-top:8px}
+.lk{display:inline-flex;align-items:center;gap:4px;font-size:13px;padding:3px 10px;border-radius:999px;border:1px solid var(--line);background:var(--card);color:var(--ink);text-decoration:none}
+.lk svg{width:13px;height:13px;color:var(--accent)}
+/* 交通連接條 */
+.move{display:grid;grid-template-columns:58px 1fr;gap:10px;align-items:center;padding:2px 0}
+.move .rail{justify-self:center;width:0;height:100%;min-height:34px;border-left:2px dashed var(--accent);opacity:.55}
+.move .pill{justify-self:start;display:inline-flex;align-items:center;gap:6px;padding:5px 12px;border-radius:999px;background:var(--accent);color:var(--on-accent);font-size:13.5px;font-weight:700}
+.move .pill svg{width:18px;height:18px}
+.move.bus .pill,.move.walk .pill{background:var(--accent-soft);color:var(--accent)}
+/* 細項框 */
+.subbox{margin-top:10px;border:1px solid var(--line);background:var(--card);border-radius:12px;overflow:hidden}
+.subhead{font-size:12px;font-weight:700;letter-spacing:.06em;color:var(--accent);background:var(--accent-soft);padding:6px 12px}
+.subbox ul{list-style:none;margin:0;padding:0}
+.subrow{display:grid;grid-template-columns:auto 1fr auto;gap:8px;align-items:start;padding:9px 12px;border-top:1px solid var(--line)}
+.subrow:first-child{border-top:0}
+.subrow .nm{font-weight:500;font-size:14px;line-height:1.45;min-width:0;overflow-wrap:anywhere}
+.subrow .nm .chip{margin-left:4px;vertical-align:1px}
+.subrow .note{font-size:13px;margin-top:2px}
+.subrow .bullet{width:20px;height:20px;display:grid;place-items:center}
+.subrow .bullet::before{content:"";width:6px;height:6px;border-radius:50%;background:var(--accent);opacity:.6}
+.ic{display:flex;gap:4px}
+.ic a{display:grid;place-items:center;width:30px;height:30px;border-radius:8px;border:1px solid var(--line);color:var(--accent);background:var(--paper)}
+.ic svg{width:15px;height:15px}
+.backup{margin-top:10px;border:1.5px dashed var(--line);border-radius:12px;padding:8px 12px;font-size:14px}
+.backup .lab{font-size:12px;color:var(--ink-soft);font-weight:500}
+.booking{margin-top:10px;background:var(--card);border:1px solid var(--line);border-radius:12px;padding:10px 12px;font-size:13.5px}
+.booking h4{margin:0 0 4px;font-size:12px;letter-spacing:.08em;color:var(--stamp);font-weight:700}
+.booking ul{margin:0;padding-left:18px}
+.flight{margin-top:8px;display:grid;grid-template-columns:1fr auto 1fr;align-items:center;gap:8px;background:var(--card);border:1px solid var(--line);border-radius:12px;padding:10px 12px}
+.flight .ap b{display:block;font-family:var(--font-display);font-size:22px;line-height:1.1;color:var(--accent)}
+.flight .ap span{font-size:12px;color:var(--ink-soft)}
+.flight .ap:last-child{text-align:right}
+.flight .mid{font-size:12px;color:var(--ink-soft);text-align:center}
+.pager{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:28px}
+.pager a{display:block;background:var(--card);border:1px solid var(--line);border-radius:12px;padding:10px 12px;text-decoration:none;color:inherit;font-size:13px;min-width:0}
+.pager a b{display:block;font-size:15px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.pager a:last-child{text-align:right}
+.empty{color:var(--ink-soft);font-size:14px;padding:16px 0}
+
+/* 其他分頁 */
+.cards{display:grid;gap:10px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:14px}
+.card h3{font-size:17px;line-height:1.35}
+.kv{display:grid;grid-template-columns:auto 1fr;gap:2px 12px;margin:8px 0 0;font-size:14px}
+.kv dt{color:var(--ink-soft)} .kv dd{margin:0;min-width:0;overflow-wrap:anywhere}
+.pass{display:grid;grid-template-columns:1fr auto 1fr;gap:6px;align-items:end;margin-top:8px}
+.pass b{display:block;font-family:var(--font-display);font-size:30px;line-height:1;color:var(--accent)}
+.pass .r{text-align:right}
+.pass small{display:block;font-size:12px;color:var(--ink-soft)}
+.pass .arrow{color:var(--ink-soft);font-size:12px;text-align:center;padding-bottom:4px}
+.stay-town{font-size:12px;color:var(--accent);font-weight:700;letter-spacing:.06em}
+.check{list-style:none;margin:0;padding:0;display:grid;gap:2px}
+.check label{display:flex;gap:10px;align-items:flex-start;padding:8px 0;border-top:1px solid var(--line);cursor:pointer}
+.check li:first-child label{border-top:0}
+.check input{width:18px;height:18px;margin-top:3px;accent-color:var(--accent);flex:0 0 auto}
+.check input:checked + span{color:var(--ink-soft);text-decoration:line-through}
+.check small{display:block;color:var(--ink-soft);text-decoration:none}
+.bc{background:#ffffff;border-radius:12px;padding:14px 12px 10px;margin-top:10px;text-align:center;border:1px solid var(--line)}
+.bc svg{width:100%;max-width:420px;height:auto;display:block;margin:0 auto}
+.bc .num{font-family:ui-monospace,Menlo,Consolas,monospace;font-size:16px;letter-spacing:.12em;color:#111111;margin-top:4px}
+.plain{list-style:none;margin:0;padding:0;display:grid;gap:8px;font-size:14px}
+.foot{font-size:12px;color:var(--ink-soft);text-align:center;margin-top:32px}
+@media (prefers-reduced-motion:no-preference){.view{animation:fade .25s ease}@keyframes fade{from{opacity:.4}to{opacity:1}}}
+</style>
+
+<header class="top">
+  <nav class="tabs wrap" id="tabs" aria-label="分頁">
+    <a class="tab" href="#" data-r="home">首頁</a>
+    <a class="tab" href="#day-1" data-r="day">每日行程</a>
+    <a class="tab" href="#transport" data-r="transport">交通</a>
+    <a class="tab" href="#stays" data-r="stays">住宿</a>
+    <a class="tab" href="#list" data-r="list">清單</a>
+    <a class="tab" href="#barcode" data-r="barcode">冬冬條碼</a>
+  </nav>
+</header>
+<main class="wrap view" id="app"></main>
+
+<script>
+const TRIP = {"days": [{"n": 1, "date": "2027-02-19", "dow": "五", "theme": "出發紐西蘭", "stay": "", "routeLink": null, "items": [{"group": "全體", "time": "18:25", "drive": "", "driveMin": 0, "mode": "car", "tag": "", "cat": "", "title": "抵達桃園機場第二航廈", "booked": false, "minor": false, "titleLink": null, "sub": false, "note": "", "noteLink": null, "map": "", "mapLink": null, "flag": null, "cond": null}, {"group": "全體", "time": "20:25", "drive": "", "driveMin": 0, "mode": "car", "tag": "", "cat": "", "title": "NZ78", "booked": false, "minor": false, "titleLink": null, "sub": false, "note": "", "noteLink": null, "map": "", "mapLink": null, "flag": null, "cond": null, "flight": {"code": "NZ78", "airline": "紐西蘭航空", "depDate": "2/19", "dep": "20:25", "from": "TPE桃園國際機場T2", "arrDate": "2/20", "arr": "12:05", "to": "AKL奧克蘭機場I", "note": "行李不可直掛", "fromCode": "TPE", "toCode": "AKL", "fromLL": [25.08, 121.23], "toLL": [-37.008, 174.785]}}], "town": null, "townEn": null}, {"n": 2, "date": "2027-02-20", "dow": "六", "theme": "抵達基督城", "stay": "City Centre Modern Townhouse", "routeLink": null, "items": [{"group": "全體", "time": "15:00", "drive": "", "driveMin": 0, "mode": "car", "tag": "", "cat": "", "title": "NZ551", "booked": false, "minor": false, "titleLink": null, "sub": false, "note": "", "noteLink": null, "map": "", "mapLink": null, "flag": null, "cond": null, "flight": {"code": "NZ551", "airline": "紐西蘭航空", "depDate": "2/20", "dep": "15:00", "from": "AKL奧克蘭機場D", "arrDate": "2/20", "arr": "16:25", "to": "CHC基督城", "note": "", "fromCode": "AKL", "toCode": "CHC", "fromLL": [-37.008, 174.785], "toLL": [-43.489, 172.532]}}, {"group": "全體", "time": "", "drive": "23分", "driveMin": 23, "mode": "bus", "tag": "", "cat": "", "title": "29號公車搭到Manchester St near Kilmore St", "booked": false, "minor": false, "titleLink": "https://www.metroinfo.co.nz/timetables/29-city-airport/", "sub": false, "note": "大人可以用信用卡或APPLE PAY，兒童需要現金並保留收據，兩小時內轉車免費", "noteLink": null, "map": "", "mapLink": null, "flag": null, "cond": null}, {"group": "全體", "time": "check in", "drive": "", "driveMin": 0, "mode": "car", "tag": "", "cat": "", "title": "City Centre Modern Townhouse", "booked": false, "minor": false, "titleLink": null, "sub": false, "note": "", "noteLink": null, "map": "266 Manchester Street, Christchurch Central City, Christchurch 8013, New Zealand", "mapLink": null, "flag": null, "cond": null, "ll": [-43.5262, 172.6392], "stay": true}, {"group": "全體", "time": "", "drive": "20分", "driveMin": 20, "mode": "bus", "tag": "", "cat": "", "title": "搭公車+走路", "booked": false, "minor": false, "titleLink": null, "sub": false, "note": "", "noteLink": null, "map": "", "mapLink": null, "flag": null, "cond": null}, {"group": "克家", "time": "晚餐", "drive": "", "driveMin": 0, "mode": "car", "tag": "", "cat": "", "title": "City Cafe Asian Cuisine(馬來西亞菜)", "booked": false, "minor": true, "titleLink": null, "sub": false, "note": "", "noteLink": null, "map": "City Cafe Asian Cuisine", "mapLink": null, "flag": null, "cond": null, "ll": [-43.5318, 172.6365]}, {"group": "大人", "time": "晚餐", "drive": "", "driveMin": 0, "mode": "car", "tag": "", "cat": "", "title": "Dubba Deluxe", "booked": false, "minor": true, "titleLink": null, "sub": false, "note": "摩洛哥與地中海風味 菜單", "noteLink": "https://dubbadeluxe.co.nz/menu", "map": "Dubba Deluxe", "mapLink": null, "flag": null, "cond": null, "ll": [-43.5335, 172.6375]}, {"group": "全體", "time": "", "drive": "", "driveMin": 0, "mode": "car", "tag": "", "cat": "", "title": "超市：Woolworths Moorhouse Ave", "booked": false, "minor": true, "titleLink": null, "sub": false, "note": "", "noteLink": null, "map": "Woolworths Moorhouse Ave", "mapLink": null, "flag": null, "cond": null, "ll": [-43.5418, 172.6385]}, {"group": "全體", "time": "", "drive": "20分", "driveMin": 20, "mode": "bus", "tag": "", "cat": "", "title": "搭公車+走路", "booked": false, "minor": false, "titleLink": null, "sub": false, "note": "", "noteLink": null, "map": "", "mapLink": null, "flag": null, "cond": null}, {"group": "全體", "time": "", "drive": "", "driveMin": 0, "mode": "car", "tag": "", "cat": "", "title": "Twenty Seven Steps(歐洲菜/要定位)", "booked": false, "minor": false, "titleLink": null, "sub": false, "note": "", "noteLink": null, "map": "Twenty Seven Steps", "mapLink": null, "flag": "backup", "cond": "如果沒有逛超市就吃這家", "ll": [-43.53, 172.6322]}], "town": "基督城", "townEn": "Christchurch"}, {"n": 3, "date": "2027-02-21", "dow": "日", "theme": "基督城city walk", "stay": "City Centre Modern Townhouse", "routeLink": null, "items": [{"group": "全體", "time": "早餐", "drive": "", "driveMin": 0, "mode": "car", "tag": "", "cat": "", "title": "早餐時光", "booked": false, "minor": true, "titleLink": null, "sub": false, "note": "", "noteLink": null, "map": "", "mapLink": null, "flag": null, "cond": null}, {"group": "全體", "time": "", "drive": "", "driveMin": 0, "mode": "bus", "tag": "", "cat": "", "title": "Uber 30 NZD/公車3NZD", "booked": false, "minor": false, "titleLink": null, "sub": false, "note": "", "noteLink": null, "map": "", "mapLink": null, "flag": null, "cond": null}, {"group": "全體", "time": "10:00-12:00", "drive": "", "driveMin": 0, "mode": "car", "tag": "", "cat": "", "title": "The Riccarton Sunday Market(10:00-14:00)", "booked": false, "minor": false, "titleLink": "https://shin.tw/nzl-riccarton-sunday-market/", "sub": false, "note": "官網", "noteLink": "https://www.riccartonmarket.co.nz/", "map": "The Riccarton Sunday Market", "mapLink": null, "flag": null, "cond": null, "ll": [-43.539, 172.577]}, {"group": "大人", "time": "", "drive": "", "driveMin": 0, "mode": "car", "tag": "", "cat": "", "title": "ChristChurch Cathedral", "booked": false, "minor": false, "titleLink": null, "sub": false, "note": "", "noteLink": null, "map": "ChristChurch Cathedral", "mapLink": null, "flag": null, "cond": null, "ll": [-43.531, 172.6367]}, {"group": "大人", "time": "14:30", "drive": "", "driveMin": 0, "mode": "car", "tag": "", "cat": "", "title": "雅芳河撐篙船(Punting on the Avon)-Worcester Bridge", "booked": false, "minor": false, "titleLink": "https://www.christchurchattractions.nz/punting/", "sub": false, "note": "Bookings are essential: choose to float through the Botanic Gardens from the Antigua Boat Sheds year-round (植物園出發-植物園景色)or \nsee the central city’s Avon River Precinct from the Worcester Bridge (summer only)(伍斯特橋出發-市區景色).", "noteLink": null, "map": "", "mapLink": null, "flag": null, "cond": null}, {"group": "克家", "time": "", "drive": "", "driveMin": 0, "mode": "car", "tag": "", "cat": "", "title": "The Margaret Mahy Family Playground", "booked": false, "minor": false, "titleLink": null, "sub": false, "note": "", "noteLink": null, "map": "The Margaret Mahy Family Playground", "mapLink": null, "flag": null, "cond": null, "ll": [-43.5288, 172.6428]}, {"group": "克家", "time": "", "drive": "", "driveMin": 0, "mode": "car", "tag": "", "cat": "", "title": "新攝政街(New Regent Street Precinct)", "booked": false, "minor": false, "titleLink": null, "sub": false, "note": "", "noteLink": null, "map": "New Regent Street Precinct", "mapLink": null, "flag": null, "cond": null, "ll": [-43.5297, 172.6355]}, {"group": "克家", "time": "", "drive": "", "driveMin": 0, "mode": "car", "tag": "", "cat": "", "title": "圖書館(Tūranga)", "booked": false, "minor": false, "titleLink": null, "sub": false, "note": "", "noteLink": null, "map": "Tūranga", "mapLink": null, "flag": "optional", "cond": "看時間", "ll": [-43.5326, 172.6372]}, {"group": "克家", "time": "", "drive": "", "driveMin": 0, "mode": "car", "tag": "", "cat": "", "title": "ChristChurch Cathedral", "booked": false, "minor": false, "titleLink": null, "sub": false, "note": "", "noteLink": null, "map": "ChristChurch Cathedral", "mapLink": null, "flag": null, "cond": null, "ll": [-43.531, 172.6367]}, {"group": "全體", "time": "16:00", "drive": "", "driveMin": 0, "mode": "car", "tag": "", "cat": "", "title": "Riverside Market", "booked": false, "minor": false, "titleLink": null, "sub": false, "note": "Sunday-Wednesday 7.30am-8 pm", "noteLink": null, "map": "Riverside Market Christchurch", "mapLink": null, "flag": null, "cond": null, "ll": [-43.5337, 172.633]}, {"group": "全體", "time": "", "drive": "", "driveMin": 0, "mode": "car", "tag": "", "cat": "甜點烘焙", "title": "THE GREAT PASTRY SHOP(8:30-18:00)", "booked": false, "minor": false, "titleLink": null, "sub": true, "note": "由母女檔創立，融合歐式傳統技法與在地創意，推肉桂布里歐 (Cinnamon Brioche)、水果塔與泡芙。", "noteLink": null, "map": "", "mapLink": null, "flag": null, "cond": null}, {"group": "全體", "time": "", "drive": "", "driveMin": 0, "mode": "car", "tag": "", "cat": "甜點烘焙", "title": "Bellbird Bakery Riverside Market", "booked": false, "minor": true, "titleLink": null, "sub": true, "note": "可頌", "noteLink": null, "map": "", "mapLink": null, "flag": null, "cond": null}, {"group": "全體", "time": "", "drive": "", "driveMin": 0, "mode": "car", "tag": "", "cat": "美式燒烤 (BBQ)", "title": "Smokey T’s(10:00–17:00)", "booked": false, "minor": false, "titleLink": null, "sub": true, "note": "基督城傳奇燒烤，以「慢火煙燻」肉品聞名，連 4 年奪 People’s Choice。", "noteLink": null, "map": "", "mapLink": null, "flag": null, "cond": null}, {"group": "全體", "time": "", "drive": "", "driveMin": 0, "mode": "car", "tag": "", "cat": "新鮮海產", "title": "Little Fish Co.", "booked": false, "minor": false, "titleLink": null, "sub": true, "note": "想吃紐西蘭特產「黑金鮑魚」或新鮮生蠔、炸魚薯條，找這家海鮮攤。", "noteLink": null, "map": "", "mapLink": null, "flag": null, "cond": null}, {"group": "全體", "time": "", "drive": "", "driveMin": 0, "mode": "car", "tag": "", "cat": "來一杯啤酒", "title": "Canterbury Brewers Collective(10:00–20:00)", "booked": false, "minor": false, "titleLink": null, "sub": true, "note": "只販售坎特伯雷在地獨立酒廠的啤酒與蘋果酒，現場擁有多達 24 個汲酒頭（Taps）且菜單天天更換", "noteLink": null, "map": "", "mapLink": null, "flag": null, "cond": null}, {"group": "全體", "time": "", "drive": "", "driveMin": 0, "mode": "car", "tag": "", "cat": "鹹派", "title": "The Butcher's Pie Shop(07:30–16:00)", "booked": false, "minor": false, "titleLink": null, "sub": true, "note": "", "noteLink": null, "map": "", "mapLink": null, "flag": null, "cond": null}, {"group": "克家", "time": "晚餐備案", "drive": "", "driveMin": 0, "mode": "car", "tag": "", "cat": "", "title": "Chiwahwah Mexican Cantina Bar", "booked": false, "minor": true, "titleLink": "https://chiwahwah.co.nz/menu/", "sub": false, "note": "", "noteLink": null, "map": "Chiwahwah Mexican Cantina Bar", "mapLink": null, "flag": "backup", "cond": "如果 Riverside Market 還不餓", "ll": [-43.5345, 172.635]}, {"group": "全體", "time": "住宿", "drive": "", "driveMin": 0, "mode": "car", "tag": "", "cat": "", "title": "City Centre Modern Townhouse", "booked": false, "minor": false, "titleLink": null, "sub": false, "note": "", "noteLink": null, "map": "266 Manchester Street, Christchurch Central City, Christchurch 8013, New Zealand", "mapLink": null, "flag": null, "cond": null, "ll": [-43.5262, 172.6392], "stay": true}], "town": "基督城", "townEn": "Christchurch"}, {"n": 4, "date": "2027-02-22", "dow": "一", "theme": "南極中心與蒂卡波湖", "stay": "May's Place", "routeLink": "https://maps.app.goo.gl/cDKKbNJzw4F9Pf2s6", "items": [{"group": "全體", "time": "08:00-08:45", "drive": "", "driveMin": 0, "mode": "car", "tag": "", "cat": "", "title": "早餐時光", "booked": false, "minor": true, "titleLink": null, "sub": false, "note": "", "noteLink": null, "map": "", "mapLink": null, "flag": null, "cond": null}, {"group": "全體", "time": "最晚09:00出門", "drive": "", "driveMin": 0, "mode": "bus", "tag": "", "cat": "", "title": "29號公車Kilmore St near Manchester St 上車", "booked": false, "minor": false, "titleLink": null, "sub": false, "note": "(總站發車後3分鐘左右到站)", "noteLink": null, "map": "", "mapLink": null, "flag": null, "cond": null}, {"group": "全體", "time": "", "drive": "", "driveMin": 0, "mode": "car", "tag": "", "cat": "", "title": "搭09:05的車", "booked": false, "minor": false, "titleLink": null, "sub": false, "note": "", "noteLink": null, "map": "", "mapLink": null, "flag": null, "cond": null}, {"group": "全體", "time": "10:00", "drive": "", "driveMin": 0, "mode": "car", "tag": "", "cat": "", "title": "抵達基督城機場(入境大廳取車) 租車", "booked": true, "minor": false, "titleLink": null, "sub": false, "note": "*所有人親自到場：主駕駛（訂單者）與所有額外駕駛人，都必須在取車時（或在租賃期間內）一同前往 AVIS 門市櫃檯。\n*攜帶護照、本國駕照正本以及國際駕照", "noteLink": null, "map": "Avis Christchurch Airport", "mapLink": null, "flag": null, "cond": null, "ll": [-43.489, 172.534], "booking": ["AVIS 預約代碼 23288927TB4", "車型 Kia Carnival 或同級（自排、里程無限）", "含 1 個兒童增高座椅、道路救援、零自負額", "取車 2/22 10:00 基督城機場 · 還車 3/6 20:00 皇后鎮機場"]}, {"group": "全體", "time": "", "drive": "", "driveMin": 0, "mode": "car", "tag": "", "cat": "", "title": "基督城南極中心", "booked": false, "minor": false, "titleLink": null, "sub": false, "note": "(前一天預訂trip比較便宜)", "noteLink": null, "map": "International Antarctic Centre", "mapLink": null, "flag": null, "cond": null, "ll": [-43.4893, 172.5452]}, {"group": "全體", "time": "10:20 – 10:25", "drive": "", "driveMin": 0, "mode": "car", "tag": "", "cat": "", "title": "開車抵達南極中心、入館購票", "booked": false, "minor": false, "titleLink": null, "sub": false, "note": "", "noteLink": null, "map": "", "mapLink": null, "flag": null, "cond": null}, {"group": "全體", "time": "一入場先預約", "drive": "", "driveMin": 0, "mode": "car", "tag": "", "cat": "", "title": "Hägglund 極地越野車體驗", "booked": false, "minor": false, "titleLink": null, "sub": false, "note": "小孩未滿120公分無法搭乘，大人可以輪流(一趟15分鐘)", "noteLink": null, "map": "", "mapLink": null, "flag": null, "cond": null}, {"group": "全體", "time": "一入場先確認時間", "drive": "", "driveMin": 0, "mode": "car", "tag": "", "cat": "", "title": "4D 極限劇場", "booked": false, "minor": false, "titleLink": null, "sub": false, "note": "", "noteLink": null, "map": "", "mapLink": null, "flag": null, "cond": null}, {"group": "全體", "time": "一入場先確認時間", "drive": "", "driveMin": 0, "mode": "car", "tag": "", "cat": "", "title": "小藍企鵝餵食秀", "booked": false, "minor": false, "titleLink": null, "sub": false, "note": "走入館內後，完全不要在前面的歷史展區停留，直接跟著指標快步走到位於館內後方的 Penguin Rescue Area（企鵝池）。", "noteLink": null, "map": "", "mapLink": null, "flag": null, "cond": null}, {"group": "全體", "time": "", "drive": "", "driveMin": 0, "mode": "car", "tag": "", "cat": "", "title": "南極冰風暴體驗 (Storm Dome)", "booked": false, "minor": false, "titleLink": null, "sub": false, "note": "全天循環，每場約 5 分鐘", "noteLink": null, "map": "", "mapLink": null, "flag": null, "cond": null}, {"group": "全體", "time": "", "drive": "", "driveMin": 0, "mode": "car", "tag": "", "cat": "", "title": "哈士奇互動 (Husky Zone)", "booked": false, "minor": false, "titleLink": null, "sub": false, "note": "每天都在，但狗狗會輪流休息，所以不一定隨時見得到。夏天會移到戶外帳篷", "noteLink": null, "map": "", "mapLink": null, "flag": null, "cond": null}, {"group": "全體", "time": "午餐", "drive": "", "driveMin": 0, "mode": "car", "tag": "", "cat": "", "title": "館內 Antarctic Café 享用午餐", "booked": false, "minor": true, "titleLink": null, "sub": false, "note": "", "noteLink": null, "map": "", "mapLink": null, "flag": null, "cond": null}, {"group": "全體", "time": "", "drive": "15m", "driveMin": 15, "mode": "car", "tag": "", "cat": "", "title": "超市採買 PAK'nSAVE Hornby", "booked": false, "minor": true, "titleLink": null, "sub": false, "note": "", "noteLink": null, "map": "PAK'nSAVE Hornby", "mapLink": null, "flag": null, "cond": null, "ll": [-43.543, 172.5245]}, {"group": "全體", "time": "", "drive": "2h25m", "driveMin": 145, "mode": "car", "tag": "", "cat": "", "title": "Fairlie Bakehouse(南島最好吃的派)", "booked": false, "minor": false, "titleLink": null, "sub": false, "note": "營業時間09:30-16:30", "noteLink": null, "map": "Fairlie Bakehouse", "mapLink": null, "flag": null, "cond": null, "ll": [-44.1, 170.8305]}, {"group": "全體", "time": "", "drive": "", "driveMin": 0, "mode": "car", "tag": "", "cat": "", "title": "Eat Cafe Fairlie", "booked": false, "minor": true, "titleLink": null, "sub": false, "note": "營業時間09:00-20:00，若Fairlie Bakehouse 關門了可以改去一旁", "noteLink": null, "map": "Eat Cafe Fairlie", "mapLink": null, "flag": null, "cond": null, "ll": [-44.0996, 170.829]}, {"group": "全體", "time": "", "drive": "", "driveMin": 0, "mode": "car", "tag": "", "cat": "", "title": "鎮上公園公廁", "booked": false, "minor": true, "titleLink": null, "sub": false, "note": "", "noteLink": null, "map": "63 Main Street, Fairlie 7925紐西蘭", "mapLink": null, "flag": null, "cond": null, "ll": [-44.0992, 170.8285]}, {"group": "全體", "time": "check in", "drive": "35分", "driveMin": 35, "mode": "car", "tag": "", "cat": "", "title": "May's Place", "booked": false, "minor": false, "titleLink": null, "sub": false, "note": "", "noteLink": null, "map": "18 Lochinver Avenue, Lake Tekapo", "mapLink": null, "flag": null, "cond": null, "ll": [-44.0075, 170.472], "stay": true}, {"group": "全體", "time": "", "drive": "3分", "driveMin": 3, "mode": "car", "tag": "", "cat": "", "title": "好牧羊人教堂The Church of the Good Shepherd", "booked": false, "minor": false, "titleLink": null, "sub": false, "note": "車子要停在Coach & Bus Parking走路過橋", "noteLink": null, "map": "Lake Tekapo 7999紐西蘭", "mapLink": null, "flag": null, "cond": null, "ll": [-44.0046, 170.4862]}, {"group": "全體", "time": "晚餐-自煮", "drive": "", "driveMin": 0, "mode": "car", "tag": "", "cat": "", "title": "晚餐自炊", "booked": false, "minor": true, "titleLink": null, "sub": false, "note": "", "noteLink": null, "map": "", "mapLink": null, "flag": null, "cond": null}, {"group": "大人", "time": "", "drive": "", "driveMin": 0, "mode": "car", "tag": "", "cat": "", "title": "觀星活動", "booked": false, "minor": false, "titleLink": null, "sub": false, "note": "", "noteLink": null, "map": "", "mapLink": null, "flag": null, "cond": null}, {"group": "克家", "time": "", "drive": "", "driveMin": 0, "mode": "car", "tag": "", "cat": "", "title": "好牧羊人觀星", "booked": false, "minor": false, "titleLink": null, "sub": false, "note": "", "noteLink": null, "map": "", "mapLink": null, "flag": null, "cond": null}], "town": "蒂卡波", "townEn": "Tekapo"}, {"n": 5, "date": "2027-02-23", "dow": "二", "theme": "蒂卡波湖SUP", "stay": "May's Place", "routeLink": null, "items": [{"group": "全體", "time": "08:30-09:30", "drive": "", "driveMin": 0, "mode": "car", "tag": "", "cat": "", "title": "早餐時光", "booked": false, "minor": true, "titleLink": null, "sub": false, "note": "", "noteLink": null, "map": "", "mapLink": null, "flag": null, "cond": null}, {"group": "全體", "time": "10:00", "drive": "16分", "driveMin": 16, "mode": "car", "tag": "", "cat": "", "title": "約翰山大學天文臺", "booked": false, "minor": false, "titleLink": null, "sub": false, "note": "過路費一台14nzd", "noteLink": null, "map": "University of Canterbury Mt John Observatory", "mapLink": null, "flag": null, "cond": null, "ll": [-43.9858, 170.465]}, {"group": "全體", "time": "", "drive": "", "driveMin": 0, "mode": "car", "tag": "", "cat": "", "title": "Astro Cafe", "booked": false, "minor": true, "titleLink": null, "sub": false, "note": "營業時間10:00-15:00", "noteLink": null, "map": "Astro Café Lake Tekapo", "mapLink": null, "flag": null, "cond": null, "ll": [-43.9862, 170.466]}, {"group": "全體", "time": "湖邊步道", "drive": "", "driveMin": 0, "mode": "car", "tag": "", "cat": "", "title": "Lake Tekapo Mt. John Summit", "booked": false, "minor": false, "titleLink": null, "sub": false, "note": "走個30分鐘折返", "noteLink": null, "map": "Mt John Summit Track", "mapLink": null, "flag": null, "cond": null, "ll": [-43.996, 170.47]}, {"group": "全體", "time": "午餐", "drive": "", "driveMin": 0, "mode": "car", "tag": "", "cat": "", "title": "Fishtail Authentic Indian & Nepalese Cuisine", "booked": false, "minor": true, "titleLink": null, "sub": false, "note": "印度料理(有飯/囊餅)", "noteLink": null, "map": "Fishtail Authentic Indian & Nepalese Cuisine", "mapLink": null, "flag": null, "cond": null, "ll": [-44.005, 170.4785]}, {"group": "全體", "time": "下午", "drive": "", "driveMin": 0, "mode": "car", "tag": "", "cat": "", "title": "SUP", "booked": false, "minor": false, "titleLink": null, "sub": false, "note": "官網", "noteLink": "https://www.paddletekapo.co.nz/hire", "map": "", "mapLink": null, "flag": null, "cond": null}, {"group": "全體", "time": "點心", "drive": "", "driveMin": 0, "mode": "car", "tag": "", "cat": "", "title": "The Better Batter NZ", "booked": false, "minor": true, "titleLink": null, "sub": false, "note": "營業時間13:00-18:00\n炸魚薯條、炸魷魚及玉米", "noteLink": null, "map": "The Better Batter NZ", "mapLink": null, "flag": null, "cond": null, "ll": [-44.0042, 170.48]}, {"group": "大人", "time": "晚餐", "drive": "", "driveMin": 0, "mode": "car", "tag": "", "cat": "", "title": "Blue Lake Eatery & Bar", "booked": false, "minor": true, "titleLink": null, "sub": false, "note": "訂位官網", "noteLink": "https://www.bluelake.kiwi/", "map": "", "mapLink": null, "flag": null, "cond": null}, {"group": "克家", "time": "晚餐", "drive": "", "driveMin": 0, "mode": "car", "tag": "", "cat": "", "title": "晚餐自炊", "booked": false, "minor": true, "titleLink": null, "sub": false, "note": "", "noteLink": null, "map": "", "mapLink": null, "flag": null, "cond": null}, {"group": "全體", "time": "住宿", "drive": "", "driveMin": 0, "mode": "car", "tag": "", "cat": "", "title": "May's Place", "booked": false, "minor": false, "titleLink": null, "sub": false, "note": "", "noteLink": null, "map": "18 Lochinver Avenue, Lake Tekapo", "mapLink": null, "flag": null, "cond": null, "ll": [-44.0075, 170.472], "stay": true}, {"group": "大人", "time": "", "drive": "", "driveMin": 0, "mode": "car", "tag": "", "cat": "", "title": "觀星活動", "booked": false, "minor": false, "titleLink": null, "sub": false, "note": "", "noteLink": null, "map": "", "mapLink": null, "flag": "backup", "cond": "若前一天天氣不好就改這天觀星"}], "town": "蒂卡波", "townEn": "Tekapo"}, {"n": 6, "date": "2027-02-24", "dow": "三", "theme": "Mt. cook", "stay": "Mt Cook Lodge & Motels", "routeLink": null, "items": [{"group": "全體", "time": "08:30-09:30", "drive": "", "driveMin": 0, "mode": "car", "tag": "", "cat": "", "title": "早餐時光", "booked": false, "minor": true, "titleLink": null, "sub": false, "note": "", "noteLink": null, "map": "", "mapLink": null, "flag": null, "cond": null}, {"group": "全體", "time": "11:00要離開!", "drive": "", "driveMin": 0, "mode": "car", "tag": "", "cat": "", "title": "Four Square Tekapo", "booked": false, "minor": true, "titleLink": null, "sub": false, "note": "買庫克山的食材 *冬冬條碼可刷", "noteLink": null, "map": "Four Square Tekapo", "mapLink": null, "flag": null, "cond": null, "ll": [-44.0046, 170.4792]}, {"group": "全體", "time": "", "drive": "40分", "driveMin": 40, "mode": "car", "tag": "", "cat": "", "title": "Lake Pukaki Viewpoint", "booked": false, "minor": false, "titleLink": null, "sub": false, "note": "", "noteLink": null, "map": "Lake Pukaki Viewpoint", "mapLink": null, "flag": null, "cond": null, "ll": [-44.1868, 170.1412]}, {"group": "全體", "time": "", "drive": "5分", "driveMin": 5, "mode": "car", "tag": "", "cat": "", "title": "High Country Salmon-Logans Floating Restaurant", "booked": false, "minor": false, "titleLink": null, "sub": false, "note": "", "noteLink": null, "map": "High Country Salmon-Logans Floating Restaurant", "mapLink": null, "flag": null, "cond": null, "ll": [-44.203, 170.129]}, {"group": "全體", "time": "", "drive": "11分", "driveMin": 11, "mode": "car", "tag": "", "cat": "", "title": "Tapataia Mahaka Peter's Lookout", "booked": false, "minor": false, "titleLink": null, "sub": false, "note": "", "noteLink": null, "map": "Tapataia Mahaka Peter's Lookout", "mapLink": null, "flag": null, "cond": null, "ll": [-44.079, 170.112]}, {"group": "全體", "time": "check in", "drive": "30分", "driveMin": 30, "mode": "car", "tag": "", "cat": "", "title": "Mt Cook Lodge & Motels", "booked": false, "minor": false, "titleLink": null, "sub": false, "note": "15:00 CI(太早到就先去走步道)", "noteLink": null, "map": "Aoraki/Mount Cook National Park Glencoe Access Road, Canterbury Region 7999", "mapLink": null, "flag": null, "cond": null, "ll": [-43.7348, 170.0985], "stay": true}, {"group": "全體", "time": "", "drive": "10分", "driveMin": 10, "mode": "car", "tag": "", "cat": "", "title": "Tasman Glacier View", "booked": false, "minor": false, "titleLink": null, "sub": false, "note": "來回約三公里，總共有三條步道，可以擇一也可以都去，但一定要去最右邊兩條，可以碰到冰塊", "noteLink": null, "map": "Tasman Glacier View Track Car Park", "mapLink": null, "flag": null, "cond": null, "ll": [-43.701, 170.169]}, {"group": "全體", "time": "", "drive": "", "driveMin": 0, "mode": "car", "tag": "", "cat": "", "title": "晚餐自炊", "booked": false, "minor": true, "titleLink": null, "sub": false, "note": "", "noteLink": null, "map": "", "mapLink": null, "flag": null, "cond": null}], "town": "庫克山", "townEn": "Mt Cook"}, {"n": 7, "date": "2027-02-25", "dow": "四", "theme": "Mt. cook", "stay": "Mt Cook Lodge & Motels", "routeLink": null, "items": [{"group": "全體", "time": "", "drive": "", "driveMin": 0, "mode": "car", "tag": "", "cat": "", "title": "早餐時光", "booked": false, "minor": true, "titleLink": null, "sub": false, "note": "", "noteLink": null, "map": "", "mapLink": null, "flag": null, "cond": null}, {"group": "大人", "time": "早上活動", "drive": "", "driveMin": 0, "mode": "car", "tag": "", "cat": "", "title": "直升機景觀飛行 + 雪地降落THE ULTIMATE ALPINE EXPERIENCE", "booked": false, "minor": false, "titleLink": null, "sub": false, "note": "", "noteLink": null, "map": "", "mapLink": null, "flag": null, "cond": null}, {"group": "克家", "time": "9:15-12:00", "drive": "", "driveMin": 0, "mode": "car", "tag": "8:45報到", "cat": "", "title": "Glacier Explorers", "booked": true, "minor": false, "titleLink": null, "sub": false, "note": "Activities desk located inside The Hermitage Hotel集合", "noteLink": null, "map": "The Hermitage Hotel", "mapLink": null, "flag": null, "cond": null, "ll": [-43.736, 170.096], "booking": ["08:45 報到，09:15 出發", "報到點：The Hermitage 飯店內的活動櫃台（Activities desk）", "飯店正門不能停車，請停在飯店後方停車場", "確認號 7f82c444c（KKday）· 電話 0800 68 68 00"]}, {"group": "全體", "time": "午餐", "drive": "", "driveMin": 0, "mode": "car", "tag": "", "cat": "", "title": "隱士飯店二樓的咖啡廳", "booked": false, "minor": true, "titleLink": null, "sub": false, "note": "", "noteLink": null, "map": "The Hermitage Hotel", "mapLink": null, "flag": null, "cond": null, "ll": [-43.736, 170.096]}, {"group": "全體", "time": "下午活動", "drive": "", "driveMin": 0, "mode": "car", "tag": "", "cat": "", "title": "Hooker Valley Track", "booked": false, "minor": false, "titleLink": null, "sub": false, "note": "第二座橋到第三座很遠，克家視情況\n(全程3-4小時)", "noteLink": null, "map": "Hooker Valley track", "mapLink": null, "flag": null, "cond": null, "ll": [-43.717, 170.0935]}, {"group": "全體", "time": "", "drive": "", "driveMin": 0, "mode": "car", "tag": "", "cat": "", "title": "晚餐自炊", "booked": false, "minor": true, "titleLink": null, "sub": false, "note": "", "noteLink": null, "map": "", "mapLink": null, "flag": null, "cond": null}, {"group": "全體", "time": "", "drive": "", "driveMin": 0, "mode": "car", "tag": "", "cat": "", "title": "Mt Cook Lodge & Motels", "booked": false, "minor": false, "titleLink": null, "sub": false, "note": "", "noteLink": null, "map": "", "mapLink": null, "flag": null, "cond": null, "stay": true}], "town": "庫克山", "townEn": "Mt Cook"}, {"n": 8, "date": "2027-02-26", "dow": "五", "theme": "Oamaru", "stay": "Top of Tyne - Peace, Comfort & Local Connection", "routeLink": "https://maps.app.goo.gl/SudACWHqWFB9n7P56", "items": [{"group": "全體", "time": "早餐", "drive": "", "driveMin": 0, "mode": "car", "tag": "", "cat": "", "title": "隱士飯店的自助早餐", "booked": false, "minor": true, "titleLink": null, "sub": false, "note": "", "noteLink": null, "map": "The Hermitage Hotel", "mapLink": null, "flag": null, "cond": null, "ll": [-43.736, 170.096]}, {"group": "全體", "time": "10:00", "drive": "", "driveMin": 0, "mode": "car", "tag": "", "cat": "", "title": "離開mt. cook", "booked": false, "minor": false, "titleLink": null, "sub": false, "note": "", "noteLink": null, "map": "", "mapLink": null, "flag": null, "cond": null}, {"group": "全體", "time": "", "drive": "2.5小時", "driveMin": 150, "mode": "car", "tag": "", "cat": "", "title": "午餐：The Waimate Bakery", "booked": false, "minor": true, "titleLink": null, "sub": false, "note": "中間kurow有公廁(車程約1.5h)，餐廳旁邊有New World Waimate", "noteLink": null, "map": "The Waimate Bakery", "mapLink": null, "flag": null, "cond": null, "ll": [-44.7322, 171.048]}, {"group": "全體", "time": "", "drive": "3分", "driveMin": 3, "mode": "car", "tag": "", "cat": "", "title": "Tame Wallabies EnkleDooVery Korna 餵袋鼠", "booked": false, "minor": false, "titleLink": null, "sub": false, "note": "(只能付現)Adults $15/Children under 12 years $10", "noteLink": null, "map": "Tame Wallabies EnkleDooVery Korna", "mapLink": null, "flag": null, "cond": null, "ll": [-44.7395, 171.031]}, {"group": "全體", "time": "", "drive": "1小時15分", "driveMin": 75, "mode": "car", "tag": "", "cat": "", "title": "Katiki point 看野生海獅", "booked": false, "minor": false, "titleLink": null, "sub": false, "note": "", "noteLink": null, "map": "Katiki point", "mapLink": null, "flag": "optional", "cond": "看時間", "ll": [-45.396, 170.8645]}, {"group": "全體", "time": "Check in", "drive": "40分", "driveMin": 40, "mode": "car", "tag": "", "cat": "", "title": "Top of Tyne - Peace, Comfort & Local Connection", "booked": false, "minor": false, "titleLink": null, "sub": false, "note": "", "noteLink": null, "map": "73 Tyne St, 9400,Oamaru", "mapLink": null, "flag": null, "cond": null, "ll": [-45.1003, 170.969], "stay": true}, {"group": "全體", "time": "晚餐", "drive": "", "driveMin": 0, "mode": "car", "tag": "", "cat": "", "title": "Cucina", "booked": false, "minor": true, "titleLink": null, "sub": false, "note": "訂位官網", "noteLink": "https://www.sevenrooms.com/explore/cucinaoamaru/reservations/create/search/", "map": "Cucina Oamaru", "mapLink": null, "flag": null, "cond": null, "ll": [-45.0983, 170.9712]}, {"group": "全體", "time": "", "drive": "", "driveMin": 0, "mode": "car", "tag": "", "cat": "", "title": "Scotts Brewing Co.", "booked": false, "minor": false, "titleLink": null, "sub": false, "note": "網友說酒好喝，推crispy calamari", "noteLink": null, "map": "Scotts Brewing Co. Oamaru", "mapLink": null, "flag": null, "cond": null, "ll": [-45.1005, 170.9742]}, {"group": "全體", "time": "20:20集合", "drive": "", "driveMin": 0, "mode": "car", "tag": "", "cat": "", "title": "小藍企鵝", "booked": true, "minor": false, "titleLink": null, "sub": false, "note": "免費觀看地點：Oamaru Harbour Tourist Park到Friendly Bay這一整條>>所選日期 3 天（含）之前取消，未使用可免費取消", "noteLink": null, "map": "Ōamaru Penguins", "mapLink": null, "flag": null, "cond": null, "ll": [-45.1105, 170.9808], "booking": ["20:30 場，請提前 15 分鐘到", "⚠ 請帶列印的紙本票，不接受手機票；全程禁止拍照錄影", "集合：Waterfront Rd, South Hill, Oamaru", "GetYourGuide 預訂編號 GYGKBF4H38A5（克家 2 大 1 小）"]}], "town": "奧瑪魯", "townEn": "Ōamaru"}, {"n": 9, "date": "2027-02-27", "dow": "六", "theme": "wanaka", "stay": "KIWI", "routeLink": "https://maps.app.goo.gl/NBhpw6H486a2FdvE9", "items": [{"group": "全體", "time": "早餐", "drive": "", "driveMin": 0, "mode": "car", "tag": "", "cat": "", "title": "Harbour Street Bakery, Oamaru 外帶派", "booked": false, "minor": true, "titleLink": null, "sub": false, "note": "09:00–16:00\n(可頌好像也很多人推)", "noteLink": null, "map": "Harbour Street Bakery, Oamaru", "mapLink": null, "flag": null, "cond": null, "ll": [-45.1, 170.9728]}, {"group": "全體", "time": "", "drive": "", "driveMin": 0, "mode": "car", "tag": "", "cat": "", "title": "早上oamaru鎮上散步", "booked": false, "minor": false, "titleLink": null, "sub": false, "note": "friendly bay/維多利亞老街區", "noteLink": null, "map": "Oamaru Victorian Precinct", "mapLink": null, "flag": null, "cond": null, "ll": [-45.0995, 170.972]}, {"group": "全體", "time": "午餐", "drive": "", "driveMin": 0, "mode": "car", "tag": "", "cat": "", "title": "Star and Garter Restaurant", "booked": false, "minor": true, "titleLink": null, "sub": false, "note": "招牌是海鮮巧達濃湯", "noteLink": null, "map": "Star and Garter Oamaru", "mapLink": null, "flag": null, "cond": null, "ll": [-45.0972, 170.9705]}, {"group": "全體", "time": "", "drive": "1h17m", "driveMin": 77, "mode": "car", "tag": "", "cat": "", "title": "Omarama Public Toilet", "booked": false, "minor": true, "titleLink": null, "sub": false, "note": "", "noteLink": null, "map": "Omarama Public Toilet", "mapLink": null, "flag": null, "cond": null, "ll": [-44.4875, 169.9685]}, {"group": "全體", "time": "", "drive": "23m", "driveMin": 23, "mode": "car", "tag": "", "cat": "", "title": "Lindis Pass Viewpoint 景觀台", "booked": false, "minor": false, "titleLink": null, "sub": false, "note": "", "noteLink": null, "map": "Lindis Pass Viewpoint", "mapLink": null, "flag": null, "cond": null, "ll": [-44.588, 169.649]}, {"group": "全體", "time": "check in", "drive": "1h", "driveMin": 60, "mode": "car", "tag": "", "cat": "", "title": "KIWI", "booked": false, "minor": false, "titleLink": null, "sub": false, "note": "oamaru到wanaka車程大概3小時", "noteLink": null, "map": "8 Kapuka Lane, Wānaka 9305, New Zealand", "mapLink": null, "flag": null, "cond": null, "ll": [-44.6935, 169.156], "stay": true}, {"group": "全體", "time": "", "drive": "", "driveMin": 0, "mode": "car", "tag": "", "cat": "", "title": "New World Wanaka", "booked": false, "minor": true, "titleLink": null, "sub": false, "note": "冬冬條碼可刷\n附近也有華人超市LuLu Asian Supermarket", "noteLink": null, "map": "New World Wanaka", "mapLink": null, "flag": null, "cond": null, "ll": [-44.7002, 169.1395]}, {"group": "全體", "time": "", "drive": "", "driveMin": 0, "mode": "car", "tag": "", "cat": "", "title": "晚餐自炊", "booked": false, "minor": true, "titleLink": null, "sub": false, "note": "", "noteLink": null, "map": "", "mapLink": null, "flag": null, "cond": null}], "town": "瓦納卡", "townEn": "Wānaka"}, {"n": 10, "date": "2027-02-28", "dow": "日", "theme": "wanaka", "stay": "KIWI", "routeLink": null, "items": [{"group": "大人", "time": "07:00出發", "drive": "", "driveMin": 0, "mode": "car", "tag": "", "cat": "", "title": "Roys Peak Track Parking起登", "booked": false, "minor": false, "titleLink": null, "sub": false, "note": "", "noteLink": null, "map": "Roys Peak Track Parking", "mapLink": null, "flag": null, "cond": null, "ll": [-44.678, 169.058]}, {"group": "大人", "time": "07:00-10:30", "drive": "", "driveMin": 0, "mode": "car", "tag": "上山", "cat": "", "title": "Roys Peak 之旅(3小時40分鐘)", "booked": false, "minor": false, "titleLink": null, "sub": false, "note": "上山時間：從登山口走到明信片拍照點，約需要3個小時（5.7公里）。再往上走到山頂，約需要40分鐘。\n下山時間：從山頂走到明信片拍照點，約需要30分鐘。再往下走到登山口，約需要2小時。", "noteLink": null, "map": "", "mapLink": null, "flag": null, "cond": null}, {"group": "大人", "time": "10:30-11:30", "drive": "", "driveMin": 0, "mode": "car", "tag": "休息", "cat": "", "title": "山頂休息", "booked": false, "minor": false, "titleLink": null, "sub": false, "note": "", "noteLink": null, "map": "", "mapLink": null, "flag": null, "cond": null}, {"group": "大人", "time": "11:30-14:00", "drive": "", "driveMin": 0, "mode": "car", "tag": "下山", "cat": "", "title": "下山(2小時半)", "booked": false, "minor": false, "titleLink": null, "sub": false, "note": "", "noteLink": null, "map": "", "mapLink": null, "flag": null, "cond": null}, {"group": "克家", "time": "", "drive": "", "driveMin": 0, "mode": "car", "tag": "", "cat": "", "title": "Diamond Lake Track(1小時)", "booked": false, "minor": false, "titleLink": null, "sub": false, "note": "", "noteLink": null, "map": "Diamond Lake Track", "mapLink": null, "flag": "optional", "cond": "看體力", "ll": [-44.6505, 168.9625]}, {"group": "克家", "time": "", "drive": "", "driveMin": 0, "mode": "car", "tag": "", "cat": "", "title": "Wanaka Sunday Craft Market", "booked": false, "minor": false, "titleLink": null, "sub": false, "note": "10:00開始", "noteLink": null, "map": "169 Ardmore Street, Wanaka", "mapLink": null, "flag": null, "cond": null, "ll": [-44.6975, 169.1365]}, {"group": "克家", "time": "", "drive": "", "driveMin": 0, "mode": "car", "tag": "", "cat": "", "title": "Hook wanaka(釣鮭魚)", "booked": false, "minor": false, "titleLink": null, "sub": false, "note": "", "noteLink": null, "map": "Hook wanaka", "mapLink": null, "flag": null, "cond": null, "ll": [-44.736, 169.205]}, {"group": "克家", "time": "", "drive": "", "driveMin": 0, "mode": "car", "tag": "", "cat": "", "title": "Wanaka Rotary Park Playground", "booked": false, "minor": false, "titleLink": null, "sub": false, "note": "", "noteLink": null, "map": "Wanaka Rotary Park Playground", "mapLink": null, "flag": null, "cond": null, "ll": [-44.6988, 169.1318]}, {"group": "克家", "time": "", "drive": "", "driveMin": 0, "mode": "car", "tag": "", "cat": "", "title": "Wānaka Willow Tree", "booked": false, "minor": false, "titleLink": null, "sub": false, "note": "", "noteLink": null, "map": "Wānaka Willow Tree", "mapLink": null, "flag": null, "cond": null, "ll": [-44.6966, 169.13]}, {"group": "全體", "time": "", "drive": "", "driveMin": 0, "mode": "car", "tag": "", "cat": "", "title": "Kai Kikokiko - Slow cooked meats", "booked": false, "minor": false, "titleLink": null, "sub": false, "note": "餐車+自炊", "noteLink": null, "map": "Kai Kikokiko - Slow cooked meats", "mapLink": null, "flag": null, "cond": null, "ll": [-44.7005, 169.142]}, {"group": "全體", "time": "", "drive": "", "driveMin": 0, "mode": "car", "tag": "", "cat": "", "title": "Wangderland Wānaka takeaway(台灣菜餐車)", "booked": false, "minor": false, "titleLink": null, "sub": false, "note": "", "noteLink": null, "map": "Wangderland Wānaka takeaway", "mapLink": null, "flag": "backup", "cond": "", "ll": [-44.6995, 169.1385]}], "town": "瓦納卡", "townEn": "Wānaka"}, {"n": 11, "date": "2027-03-01", "dow": "一", "theme": "Te Anau", "stay": "New 3 Bedroom House in Te Anau!", "routeLink": null, "items": [{"group": "全體", "time": "", "drive": "", "driveMin": 0, "mode": "car", "tag": "", "cat": "", "title": "早餐時光", "booked": false, "minor": true, "titleLink": null, "sub": false, "note": "如果體力好一早可以湖邊散步，再走去吃早餐", "noteLink": null, "map": "", "mapLink": null, "flag": null, "cond": null}, {"group": "全體", "time": "", "drive": "40分鐘", "driveMin": 40, "mode": "car", "tag": "", "cat": "", "title": "Cromwell (克倫威爾) 水果小鎮", "booked": false, "minor": false, "titleLink": "https://timtingtravel.com/cromwell/", "sub": false, "note": "途經休息，走6號公路", "noteLink": null, "map": "", "mapLink": null, "flag": null, "cond": null}, {"group": "全體", "time": "", "drive": "", "driveMin": 0, "mode": "car", "tag": "", "cat": "", "title": "Cromwell Heritage Precinct(文化遺產區)", "booked": false, "minor": false, "titleLink": null, "sub": false, "note": "", "noteLink": null, "map": "Cromwell Heritage Precinct", "mapLink": null, "flag": null, "cond": null, "ll": [-45.049, 169.201]}, {"group": "全體", "time": "", "drive": "", "driveMin": 0, "mode": "car", "tag": "", "cat": "", "title": "Jones Family Fruit Stall 水果店", "booked": false, "minor": false, "titleLink": null, "sub": false, "note": "水果冰淇淋好吃(消費可以上廁所)\n2月桃子季節", "noteLink": null, "map": "Jones Family Fruit Stall", "mapLink": null, "flag": null, "cond": null, "ll": [-45.0265, 169.17]}, {"group": "全體", "time": "", "drive": "15分", "driveMin": 15, "mode": "car", "tag": "", "cat": "", "title": "咆哮梅格瞭望台 Roaring Meg Lookout", "booked": false, "minor": false, "titleLink": null, "sub": false, "note": "", "noteLink": null, "map": "Roaring Meg Lookout", "mapLink": null, "flag": null, "cond": null, "ll": [-45.003, 169.025]}, {"group": "全體", "time": "", "drive": "30分", "driveMin": 30, "mode": "car", "tag": "", "cat": "", "title": "在Queens 皇后鎮吃", "booked": false, "minor": false, "titleLink": null, "sub": false, "note": "", "noteLink": null, "map": "", "mapLink": null, "flag": null, "cond": null}, {"group": "全體", "time": "", "drive": "約2hr", "driveMin": 120, "mode": "car", "tag": "", "cat": "", "title": "New 3 Bedroom House in Te Anau!", "booked": false, "minor": false, "titleLink": null, "sub": false, "note": "", "noteLink": null, "map": "52 Burnby Drive, Te Anau 9679, New Zealand", "mapLink": null, "flag": null, "cond": null, "ll": [-45.4055, 167.725], "stay": true}, {"group": "全體", "time": "", "drive": "", "driveMin": 0, "mode": "car", "tag": "", "cat": "", "title": "FreshChoice Te Anau 超市", "booked": false, "minor": true, "titleLink": null, "sub": false, "note": "", "noteLink": null, "map": "FreshChoice Te Anau", "mapLink": null, "flag": null, "cond": null, "ll": [-45.414, 167.7178]}, {"group": "全體", "time": "", "drive": "", "driveMin": 0, "mode": "car", "tag": "", "cat": "", "title": "Miles Better Pies 外帶派", "booked": false, "minor": true, "titleLink": null, "sub": false, "note": "", "noteLink": null, "map": "Miles Better Pies", "mapLink": null, "flag": null, "cond": null, "ll": [-45.4146, 167.7172]}, {"group": "全體", "time": "", "drive": "", "driveMin": 0, "mode": "car", "tag": "", "cat": "", "title": "晚餐自炊", "booked": false, "minor": true, "titleLink": null, "sub": false, "note": "", "noteLink": null, "map": "", "mapLink": null, "flag": null, "cond": null}], "town": "蒂阿瑙", "townEn": "Te Anau"}, {"n": 12, "date": "2027-03-02", "dow": "二", "theme": "Te Anau", "stay": "New 3 Bedroom House in Te Anau!", "routeLink": null, "items": [{"group": "大人", "time": "08:00-18:00", "drive": "", "driveMin": 0, "mode": "car", "tag": "", "cat": "", "title": "Milford Sound 一日遊", "booked": false, "minor": false, "titleLink": "https://timtingtravel.com/milford-sound-must-do/", "sub": false, "note": "", "noteLink": null, "map": "Milford Sound", "mapLink": null, "flag": null, "cond": null, "ll": [-44.671, 167.925]}, {"group": "大人", "time": "", "drive": "", "driveMin": 0, "mode": "car", "tag": "", "cat": "", "title": "KLOOK(Fiordland Tours)出發", "booked": false, "minor": false, "titleLink": null, "sub": false, "note": "", "noteLink": null, "map": "", "mapLink": null, "flag": null, "cond": null}, {"group": "大人", "time": "", "drive": "", "driveMin": 0, "mode": "car", "tag": "", "cat": "", "title": "午餐(三明治餐盒)", "booked": false, "minor": true, "titleLink": null, "sub": false, "note": "", "noteLink": null, "map": "", "mapLink": null, "flag": null, "cond": null}, {"group": "克家", "time": "10:30", "drive": "", "driveMin": 0, "mode": "car", "tag": "", "cat": "", "title": "Woodstone Farm(午餐在農場裡吃)", "booked": false, "minor": true, "titleLink": "https://woodstonefarm.nz/", "sub": false, "note": "", "noteLink": null, "map": "Woodstone Farm", "mapLink": null, "flag": null, "cond": null, "ll": [-45.37, 167.8]}, {"group": "克家", "time": "", "drive": "", "driveMin": 0, "mode": "car", "tag": "", "cat": "", "title": "Punanga Manu o Te Anau 南秧雞", "booked": false, "minor": false, "titleLink": null, "sub": false, "note": "", "noteLink": null, "map": "Te Anau Bird Sanctuary", "mapLink": null, "flag": null, "cond": null, "ll": [-45.4255, 167.705]}, {"group": "克家", "time": "", "drive": "", "driveMin": 0, "mode": "car", "tag": "", "cat": "", "title": "南方禮品逛伴手禮", "booked": false, "minor": false, "titleLink": null, "sub": false, "note": "", "noteLink": null, "map": "Luxmore Souvenirs", "mapLink": null, "flag": null, "cond": null, "ll": [-45.4142, 167.7186]}, {"group": "克家", "time": "", "drive": "", "driveMin": 0, "mode": "car", "tag": "", "cat": "", "title": "Sputnik Playground", "booked": false, "minor": false, "titleLink": null, "sub": false, "note": "", "noteLink": null, "map": "Sputnik Playground Te Anau", "mapLink": null, "flag": null, "cond": null, "ll": [-45.4152, 167.716]}, {"group": "全體", "time": "晚餐", "drive": "", "driveMin": 0, "mode": "car", "tag": "", "cat": "", "title": "The Fat Duck (建議訂位)", "booked": false, "minor": true, "titleLink": null, "sub": false, "note": "", "noteLink": null, "map": "The Fat Duck Te Anau", "mapLink": null, "flag": null, "cond": null, "ll": [-45.4143, 167.7182]}, {"group": "全體", "time": "晚餐", "drive": "", "driveMin": 0, "mode": "car", "tag": "", "cat": "", "title": "Thai Anau Restaurant & Take Away", "booked": false, "minor": true, "titleLink": null, "sub": false, "note": "", "noteLink": null, "map": "Thai Anau Restaurant & Take Away", "mapLink": null, "flag": "backup", "cond": "或前一天可以外帶吃這家", "ll": [-45.4139, 167.7192]}], "town": "蒂阿瑙", "townEn": "Te Anau"}, {"n": 13, "date": "2027-03-03", "dow": "三", "theme": "Jack's point", "stay": "Hidden Gem Special Offer Sleeps 6", "routeLink": null, "items": [{"group": "全體", "time": "", "drive": "", "driveMin": 0, "mode": "car", "tag": "", "cat": "", "title": "早餐時光", "booked": false, "minor": true, "titleLink": null, "sub": false, "note": "", "noteLink": null, "map": "", "mapLink": null, "flag": null, "cond": null}, {"group": "全體", "time": "09:30 – 10:00", "drive": "", "driveMin": 0, "mode": "car", "tag": "", "cat": "", "title": "Te Anau 退房出發", "booked": false, "minor": false, "titleLink": null, "sub": false, "note": "", "noteLink": null, "map": "", "mapLink": null, "flag": null, "cond": null}, {"group": "全體", "time": "", "drive": "約1.5hr", "driveMin": 90, "mode": "car", "tag": "", "cat": "", "title": "中間停靠Devil's Staircase Lookout Point", "booked": false, "minor": false, "titleLink": null, "sub": false, "note": "", "noteLink": null, "map": "Devil's Staircase Lookout Point", "mapLink": null, "flag": null, "cond": null, "ll": [-45.215, 168.755]}, {"group": "全體", "time": "", "drive": "約0.5hr", "driveMin": 30, "mode": "car", "tag": "", "cat": "", "title": "前往Jack's Point ，Hidden Gem Special Offer Sleeps 6 寄放行李", "booked": false, "minor": false, "titleLink": null, "sub": false, "note": "房東表示時間快到的時候提醒她，並跟她約時間地點", "noteLink": null, "map": "34 Kernel Loop, Queenstown 9371, New Zealand", "mapLink": null, "flag": null, "cond": null, "ll": [-45.0735, 168.7485]}, {"group": "全體", "time": "午餐", "drive": "", "driveMin": 0, "mode": "car", "tag": "", "cat": "", "title": "Jack's Point Restaurant (建議先訂位)", "booked": false, "minor": true, "titleLink": null, "sub": false, "note": "", "noteLink": null, "map": "Jack's Point Restaurant", "mapLink": null, "flag": null, "cond": null, "ll": [-45.087, 168.756]}, {"group": "全體", "time": "下午活動(25-40分鐘)", "drive": "", "driveMin": 0, "mode": "car", "tag": "", "cat": "", "title": "Lake Tewa Loop（特瓦湖環湖步道）", "booked": false, "minor": false, "titleLink": null, "sub": false, "note": "", "noteLink": null, "map": "Lake Tewa Jacks Point", "mapLink": null, "flag": null, "cond": null, "ll": [-45.0815, 168.747]}, {"group": "全體", "time": "15:00", "drive": "", "driveMin": 0, "mode": "car", "tag": "", "cat": "", "title": "Check in", "booked": false, "minor": false, "titleLink": null, "sub": false, "note": "", "noteLink": null, "map": "34 Kernel Loop, Queenstown 9371, New Zealand", "mapLink": null, "flag": null, "cond": null, "ll": [-45.0735, 168.7485]}, {"group": "全體", "time": "", "drive": "15分", "driveMin": 15, "mode": "car", "tag": "", "cat": "", "title": "PAK'nSAVE Queenstown", "booked": false, "minor": true, "titleLink": null, "sub": false, "note": "", "noteLink": null, "map": "", "mapLink": null, "flag": null, "cond": null}, {"group": "全體", "time": "", "drive": "", "driveMin": 0, "mode": "car", "tag": "", "cat": "", "title": "The Farmhouse", "booked": false, "minor": false, "titleLink": null, "sub": false, "note": "在遊戲場附近", "noteLink": null, "map": "23 Jack Hanley Drive, Jacks Point 9371紐西蘭", "mapLink": null, "flag": null, "cond": null, "ll": [-45.07, 168.7475]}, {"group": "全體", "time": "下午活動", "drive": "", "driveMin": 0, "mode": "car", "tag": "", "cat": "", "title": "Hanley Park Playground", "booked": false, "minor": false, "titleLink": null, "sub": false, "note": "", "noteLink": null, "map": "Hanley Park Playground", "mapLink": null, "flag": null, "cond": null, "ll": [-45.0668, 168.7435]}, {"group": "全體", "time": "", "drive": "", "driveMin": 0, "mode": "car", "tag": "", "cat": "", "title": "晚餐the farmhouse/Curry Handi Express外帶+自炊", "booked": false, "minor": true, "titleLink": null, "sub": false, "note": "", "noteLink": null, "map": "", "mapLink": null, "flag": null, "cond": null}, {"group": "全體", "time": "", "drive": "", "driveMin": 0, "mode": "car", "tag": "", "cat": "", "title": "Hidden Gem Special Offer Sleeps 6", "booked": false, "minor": false, "titleLink": null, "sub": false, "note": "", "noteLink": null, "map": "", "mapLink": null, "flag": null, "cond": null, "stay": true}], "town": "傑克角", "townEn": "Jack's Point"}, {"n": 14, "date": "2027-03-04", "dow": "四", "theme": "Skyline Gondola / Luge + Arrow Town箭鎮", "stay": "Hidden Gem Special Offer Sleeps 6", "routeLink": null, "items": [{"group": "全體", "time": "", "drive": "", "driveMin": 0, "mode": "car", "tag": "", "cat": "", "title": "早餐時光", "booked": false, "minor": true, "titleLink": null, "sub": false, "note": "", "noteLink": null, "map": "", "mapLink": null, "flag": null, "cond": null}, {"group": "全體", "time": "", "drive": "25分", "driveMin": 25, "mode": "car", "tag": "", "cat": "", "title": "前往skyline", "booked": false, "minor": false, "titleLink": null, "sub": false, "note": "可以導航到Lakeview Carpark，然後千萬不要停進去\n右轉去旁邊的單行道可以免費停三小時", "noteLink": null, "map": "Lakeview Carpark", "mapLink": null, "flag": null, "cond": null, "ll": [-45.029, 168.656]}, {"group": "全體", "time": "上午", "drive": "", "driveMin": 0, "mode": "car", "tag": "", "cat": "", "title": "Skyline Gondola + Luge", "booked": false, "minor": false, "titleLink": "https://timtingtravel.com/queenstown/", "sub": false, "note": "", "noteLink": null, "map": "Skyline Queenstown", "mapLink": null, "flag": null, "cond": null, "ll": [-45.031, 168.6545]}, {"group": "全體", "time": "午餐(11:30-14:00場次都可以選)", "drive": "", "driveMin": 0, "mode": "car", "tag": "", "cat": "", "title": "Stratosfare 餐廳", "booked": false, "minor": true, "titleLink": null, "sub": false, "note": "", "noteLink": null, "map": "Stratosfare Restaurant Queenstown", "mapLink": null, "flag": null, "cond": null, "ll": [-45.0272, 168.6478]}, {"group": "全體", "time": "Gelato", "drive": "", "driveMin": 0, "mode": "car", "tag": "", "cat": "", "title": "Anita Gelato Queenstown", "booked": false, "minor": true, "titleLink": null, "sub": false, "note": "山下纜車附近，順遊吃起來", "noteLink": null, "map": "Anita Gelato Queenstown", "mapLink": null, "flag": null, "cond": null, "ll": [-45.0318, 168.6602]}, {"group": "全體", "time": "", "drive": "25分", "driveMin": 25, "mode": "car", "tag": "", "cat": "", "title": "Arrow Town", "booked": false, "minor": false, "titleLink": "https://timtingtravel.com/arrowtown/", "sub": false, "note": "", "noteLink": null, "map": "Arrowtown", "mapLink": null, "flag": null, "cond": null, "ll": [-44.942, 168.831]}, {"group": "全體", "time": "", "drive": "", "driveMin": 0, "mode": "car", "tag": "", "cat": "", "title": "(步道)Arrow River Trail - 魔戒場景Ford of Bruinen", "booked": false, "minor": false, "titleLink": "https://www.youtube.com/watch?v=N4I7myAG_mY&t=186s", "sub": true, "note": "", "noteLink": null, "map": "Arrow River Trail Arrowtown", "mapLink": null, "flag": null, "cond": null, "ll": [-44.939, 168.8335]}, {"group": "全體", "time": "", "drive": "", "driveMin": 0, "mode": "car", "tag": "", "cat": "", "title": "Buckingham Street", "booked": false, "minor": false, "titleLink": null, "sub": true, "note": "", "noteLink": null, "map": "Buckingham Street Arrowtown", "mapLink": null, "flag": null, "cond": null, "ll": [-44.9412, 168.833]}, {"group": "全體", "time": "", "drive": "", "driveMin": 0, "mode": "car", "tag": "", "cat": "", "title": "Lakes District Museum (箭鎮博物館)", "booked": false, "minor": false, "titleLink": null, "sub": true, "note": "", "noteLink": null, "map": "Lakes District Museum and Gallery", "mapLink": null, "flag": null, "cond": null, "ll": [-44.9416, 168.8342]}, {"group": "全體", "time": "", "drive": "", "driveMin": 0, "mode": "car", "tag": "", "cat": "", "title": "Arrowtown Bakery", "booked": false, "minor": true, "titleLink": null, "sub": false, "note": "", "noteLink": null, "map": "Arrowtown Bakery", "mapLink": null, "flag": null, "cond": null, "ll": [-44.9419, 168.8322]}], "town": "傑克角", "townEn": "Jack's Point"}, {"n": 15, "date": "2027-03-05", "dow": "五", "theme": "Glenorchy", "stay": "Hidden Gem Special Offer Sleeps 6", "routeLink": null, "items": [{"group": "全體", "time": "", "drive": "", "driveMin": 0, "mode": "car", "tag": "", "cat": "", "title": "早餐時光", "booked": false, "minor": true, "titleLink": null, "sub": false, "note": "", "noteLink": null, "map": "", "mapLink": null, "flag": null, "cond": null}, {"group": "全體", "time": "", "drive": "約60分鐘", "driveMin": 60, "mode": "car", "tag": "", "cat": "", "title": "Glenorchy", "booked": false, "minor": false, "titleLink": "https://timtingtravel.com/nz-glenorchy/", "sub": false, "note": "", "noteLink": null, "map": "Glenorchy", "mapLink": null, "flag": null, "cond": null, "ll": [-44.85, 168.388]}, {"group": "全體", "time": "騎馬", "drive": "", "driveMin": 0, "mode": "car", "tag": "", "cat": "", "title": "Lighthorse Adventures Horse Treks", "booked": false, "minor": false, "titleLink": null, "sub": false, "note": "", "noteLink": null, "map": "Lighthorse Adventures Horse Treks", "mapLink": null, "flag": null, "cond": null, "ll": [-44.8492, 168.387]}, {"group": "大人", "time": "", "drive": "", "driveMin": 0, "mode": "car", "tag": "", "cat": "", "title": "Easy Rider", "booked": false, "minor": false, "titleLink": null, "sub": true, "note": "", "noteLink": null, "map": "", "mapLink": null, "flag": null, "cond": null}, {"group": "克家", "time": "", "drive": "", "driveMin": 0, "mode": "car", "tag": "", "cat": "", "title": "Pony Express", "booked": false, "minor": false, "titleLink": null, "sub": true, "note": "", "noteLink": null, "map": "", "mapLink": null, "flag": null, "cond": null}, {"group": "全體", "time": "午餐", "drive": "", "driveMin": 0, "mode": "car", "tag": "", "cat": "", "title": "Mrs Woolly's General Store", "booked": false, "minor": true, "titleLink": null, "sub": false, "note": "", "noteLink": null, "map": "Mrs Woolly's General Store", "mapLink": null, "flag": null, "cond": null, "ll": [-44.8515, 168.3885]}, {"group": "全體", "time": "", "drive": "", "driveMin": 0, "mode": "car", "tag": "", "cat": "", "title": "Glenorchy Wharf & Viewpoint", "booked": false, "minor": false, "titleLink": null, "sub": false, "note": "", "noteLink": null, "map": "Glenorchy Wharf", "mapLink": null, "flag": null, "cond": null, "ll": [-44.8532, 168.3842]}, {"group": "全體", "time": "", "drive": "", "driveMin": 0, "mode": "car", "tag": "", "cat": "", "title": "(步道)Glenorchy Lagoon Walkway", "booked": false, "minor": false, "titleLink": null, "sub": false, "note": "全程1-2小時但我們可以走小段", "noteLink": null, "map": "Glenorchy Lagoon Walkway", "mapLink": null, "flag": null, "cond": null, "ll": [-44.847, 168.3905]}], "town": "傑克角", "townEn": "Jack's Point"}, {"n": 16, "date": "2027-03-06", "dow": "六", "theme": "皇后鎮 市區逛逛", "stay": "Holiday Inn QUEENSTOWN REMARKABLES PARK by IHG", "routeLink": null, "items": [{"group": "全體", "time": "", "drive": "", "driveMin": 0, "mode": "car", "tag": "", "cat": "", "title": "週六限定市集", "booked": false, "minor": false, "titleLink": null, "sub": false, "note": "", "noteLink": null, "map": "", "mapLink": null, "flag": null, "cond": null}, {"group": "全體", "time": "", "drive": "", "driveMin": 0, "mode": "car", "tag": "", "cat": "", "title": "Remarkables Market ”美食市集\"", "booked": false, "minor": false, "titleLink": null, "sub": true, "note": "每週六 09:00 – 14:00（10 月至隔年 4 月夏季期間每週舉行）", "noteLink": null, "map": "Remarkables Market", "mapLink": null, "flag": null, "cond": null, "ll": [-45.0272, 168.7432]}, {"group": "全體", "time": "", "drive": "", "driveMin": 0, "mode": "car", "tag": "", "cat": "", "title": "Creative Queenstown Arts & Crafts Market”手作市集\"", "booked": false, "minor": false, "titleLink": null, "sub": true, "note": "每週六 09:00 – 16:00（冬季為 09:30 – 15:30）在皇后鎮市中心湖畔的 Earnslaw Park 舉行。", "noteLink": null, "map": "Earnslaw Park Queenstown", "mapLink": null, "flag": null, "cond": null, "ll": [-45.034, 168.6592]}, {"group": "全體", "time": "", "drive": "", "driveMin": 0, "mode": "car", "tag": "", "cat": "", "title": "市區逛逛", "booked": false, "minor": false, "titleLink": null, "sub": false, "note": "", "noteLink": null, "map": "", "mapLink": null, "flag": null, "cond": null}, {"group": "全體", "time": "午餐", "drive": "", "driveMin": 0, "mode": "car", "tag": "", "cat": "", "title": "Fergburger", "booked": false, "minor": true, "titleLink": null, "sub": true, "note": "", "noteLink": null, "map": "Fergburger Queenstown", "mapLink": null, "flag": null, "cond": null, "ll": [-45.0326, 168.6588]}, {"group": "全體", "time": "", "drive": "", "driveMin": 0, "mode": "car", "tag": "", "cat": "", "title": "Patagonia Chocolates - Ice Creamery & Chocolaterie", "booked": false, "minor": false, "titleLink": null, "sub": true, "note": "", "noteLink": null, "map": "Patagonia Chocolates Queenstown", "mapLink": null, "flag": null, "cond": null, "ll": [-45.0332, 168.66]}, {"group": "全體", "time": "20:00", "drive": "", "driveMin": 0, "mode": "car", "tag": "", "cat": "", "title": "還車", "booked": false, "minor": false, "titleLink": null, "sub": false, "note": "", "noteLink": null, "map": "Avis Queenstown Airport", "mapLink": null, "flag": null, "cond": null, "ll": [-45.0205, 168.74], "booking": ["訂單上的還車時間：3/6（六）20:00 皇后鎮機場", "還車前先加滿油"]}, {"group": "全體", "time": "", "drive": "", "driveMin": 0, "mode": "car", "tag": "", "cat": "", "title": "Holiday Inn QUEENSTOWN REMARKABLES PARK by IHG", "booked": false, "minor": false, "titleLink": null, "sub": false, "note": "", "noteLink": null, "map": "Holiday Inn Queenstown Remarkables Park", "mapLink": null, "flag": null, "cond": null, "ll": [-45.0278, 168.7455], "stay": true}], "town": "皇后鎮", "townEn": "Queenstown"}, {"n": 17, "date": "2027-03-07", "dow": "日", "theme": "搭機", "stay": "", "routeLink": null, "items": [{"group": "全體", "time": "5:30~6:00之間到機場", "drive": "", "driveMin": 0, "mode": "walk", "tag": "", "cat": "", "title": "方案一：步行到機場約20分鐘", "booked": false, "minor": false, "titleLink": null, "sub": false, "note": "", "noteLink": null, "map": "Queenstown Airport", "mapLink": null, "flag": null, "cond": null, "ll": [-45.021, 168.7392]}, {"group": "全體", "time": "", "drive": "", "driveMin": 0, "mode": "car", "tag": "", "cat": "", "title": "方案二：UBER $25(還會加上機場10元)", "booked": false, "minor": false, "titleLink": null, "sub": false, "note": "", "noteLink": null, "map": "", "mapLink": null, "flag": null, "cond": null}, {"group": "全體", "time": "7:00-8:50", "drive": "", "driveMin": 0, "mode": "car", "tag": "", "cat": "", "title": "nz638", "booked": false, "minor": false, "titleLink": null, "sub": false, "note": "", "noteLink": null, "map": "", "mapLink": null, "flag": null, "cond": null, "flight": {"code": "NZ638", "airline": "紐西蘭航空", "depDate": "3/7", "dep": "07:00", "from": "ZQN皇后鎮國際機場", "arrDate": "3/7", "arr": "08:50", "to": "AKL奧克蘭機場D", "note": "行李直掛", "fromCode": "ZQN", "toCode": "AKL", "fromLL": [-45.021, 168.739], "toLL": [-37.008, 174.785]}}, {"group": "全體", "time": "12:20-18:35", "drive": "", "driveMin": 0, "mode": "car", "tag": "", "cat": "", "title": "nz77", "booked": false, "minor": false, "titleLink": null, "sub": false, "note": "", "noteLink": null, "map": "", "mapLink": null, "flag": null, "cond": null, "flight": {"code": "NZ77", "airline": "紐西蘭航空", "depDate": "3/7", "dep": "12:20", "from": "AKL奧克蘭機場I", "arrDate": "3/7", "arr": "18:35", "to": "TPE桃園國際機場T2", "note": "", "fromCode": "AKL", "toCode": "TPE", "fromLL": [-37.008, 174.785], "toLL": [25.08, 121.23]}}], "town": null, "townEn": null}], "dong": [{"text": "這個包含了全部的超市及大部分的加油站還有禮品店的折扣條碼，希望你們在紐西蘭玩得開心", "link": "https://drive.google.com/file/d/12ryR7DuFEfadr8CywfuQ93Q4BwHm_SvL/view?usp=drivesdk"}, {"text": "如果有機會也非常歡迎你們來我們的餐廳用餐", "link": null}, {"text": "Formosa", "link": "https://maps.app.goo.gl/xNSVH3DYryKAH3oD8?g_st=ic"}, {"text": "The Rabbit", "link": "https://maps.app.goo.gl/bsPXn3K9VWAA3YSHA?g_st=ic"}, {"text": "另外冰川直升機、跳傘跟螢火蟲公司有給我們公司員工福利 如果有需要的話請跟我們說我們可以用公司的信箱幫你們訂", "link": null}, {"text": "庫克山冰川健行5%折扣", "link": "https://www.mtcookguides.co.nz"}, {"text": "庫克山冰川觀光10%折扣", "link": "https://www.mtcookskiplanes.com/"}, {"text": "西海岸冰川直升機健行5%折扣", "link": "https://www.foxguides.co.nz/heli-hiking/"}, {"text": "西海岸冰川直升機觀光10%折扣", "link": "https://www.mtcookskiplanes.com/inflite-franz/"}, {"text": "極限運動跳傘", "link": null}, {"text": "西海岸跳傘10%折扣", "link": "https://www.skydive.co.nz/franz-josef/"}, {"text": "庫克山跳傘10%折扣", "link": "https://www.skydive.co.nz/mt-cook/"}, {"text": "Wanaka跳傘", "link": "https://book.skydivewanaka.com/activity?filter=prodgroup-WANAKA&agent=ADDLtdPP"}, {"text": "皇后鎮跳傘", "link": "https://book.nzoneskydive.co.nz/activity?filter=prodgroup-NZONE&agent=ADDLtdPP"}, {"text": "全紐西蘭最美的", "link": null}, {"text": "西海岸Charleston螢火蟲洞", "link": null}, {"text": "Underworld Adventures 5%", "link": "https://caverafting.com"}], "flights": [{"code": "NZ78", "airline": "紐西蘭航空", "depDate": "2/19", "dep": "20:25", "from": "TPE桃園國際機場T2", "arrDate": "2/20", "arr": "12:05", "to": "AKL奧克蘭機場I", "note": "行李不可直掛", "fromCode": "TPE", "toCode": "AKL", "fromLL": [25.08, 121.23], "toLL": [-37.008, 174.785]}, {"code": "NZ551", "airline": "紐西蘭航空", "depDate": "2/20", "dep": "15:00", "from": "AKL奧克蘭機場D", "arrDate": "2/20", "arr": "16:25", "to": "CHC基督城", "note": "", "fromCode": "AKL", "toCode": "CHC", "fromLL": [-37.008, 174.785], "toLL": [-43.489, 172.532]}, {"code": "NZ638", "airline": "紐西蘭航空", "depDate": "3/7", "dep": "07:00", "from": "ZQN皇后鎮國際機場", "arrDate": "3/7", "arr": "08:50", "to": "AKL奧克蘭機場D", "note": "行李直掛", "fromCode": "ZQN", "toCode": "AKL", "fromLL": [-45.021, 168.739], "toLL": [-37.008, 174.785]}, {"code": "NZ77", "airline": "紐西蘭航空", "depDate": "3/7", "dep": "12:20", "from": "AKL奧克蘭機場I", "arrDate": "3/7", "arr": "18:35", "to": "TPE桃園國際機場T2", "note": "", "fromCode": "AKL", "toCode": "TPE", "fromLL": [-37.008, 174.785], "toLL": [25.08, 121.23]}], "stays": [{"dates": "2027/2/20-2/22", "dow": "六、日", "place": "基督城", "town": "基督城", "townEn": "Christchurch", "name": "City Centre Modern Townhouse", "type": "bnb", "room": "2-bedroom", "site": "bnb", "siteLink": "https://www.airbnb.com.tw/rooms/1439644825923718809?source_impression_id=p3_1786886678_P3grn5_zs_8lqQQf&translate_ugc=false", "addr": "266 Manchester Street, Christchurch Central City, Christchurch 8013, New Zealand", "notes": []}, {"dates": "2027/2/22-2/24", "dow": "一、二", "place": "Tekapo", "town": "蒂卡波", "townEn": "Tekapo", "name": "May's Place", "type": "bnb", "room": "3-bedroom", "site": "bnb", "siteLink": "https://www.airbnb.com.tw/rooms/49817434?%3FconfirmationCode=HMHNK3HAKB&reservationType=STAY&source_impression_id=p3_1786949498_P3o_dD8_MPLPIcTA", "addr": "18 Lochinver Avenue, Lake Tekapo", "notes": ["1/23前可以免費取消"]}, {"dates": "2027/2/24 入住", "dow": "三", "place": "庫克山Mt Cook", "town": "庫克山", "townEn": "Mt Cook", "name": "Mt Cook Lodge & Motels", "type": "飯店", "room": "Mt Cook Motel Family Queen Single Single", "site": "官網", "siteLink": "https://www.hermitage.co.nz/", "addr": "Aoraki/Mount Cook National Park Glencoe Access Road, Canterbury Region 7999", "notes": []}, {"dates": "2027/2/25 入住", "dow": "四", "place": "庫克山Mt Cook", "town": "庫克山", "townEn": "Mt Cook", "name": "Mt Cook Lodge & Motels", "type": "飯店", "room": "Mt Cook Motel Family Queen Single Single", "site": "官網", "siteLink": "https://www.hermitage.co.nz/", "addr": "Aoraki/Mount Cook National Park Glencoe Access Road, Canterbury Region 7999", "notes": []}, {"dates": "2027/2/26-2/27", "dow": "五", "place": "Oamaru", "town": "奧瑪魯", "townEn": "Ōamaru", "name": "Top of Tyne - Peace, Comfort & Local Connection", "type": "bnb", "room": "3-bedroom", "site": "Booking", "siteLink": "https://www.booking.com/hotel/nz/top-of-tyne-peace-comfort-amp-local-connection.zh-tw.html?aid=1288258&label=metagha-link-LUTW-hotel-4135470_dev-desktop_los-1_bw-191_dow-Friday_defdate-0_room-0_gstadt-2_rateid-public_aud-9182455853_gacid-21404718441_mcid-10_ppa-0_clrid-0_ad-1_gstkid-0_checkin-20270226_ppt-_lp-2158_r-10738193838776551923&sid=30a9671bd35e6398f22e515322f96ea9&all_sr_blocks=1521912901_424070180_4_0_0&checkin=2027-02-26&checkout=2027-02-27&dest_id=4135470&dest_type=hotel&dist=0&group_adults=2&group_children=0&hapos=10&highlighted_blocks=1521912901_424070180_4_0_0&hpos=10&matching_block_id=1521912901_424070180_4_0_0&no_rooms=1&req_adults=2&req_children=0&room1=A%2CA&sb_price_type=total&sr_order=popularity&sr_pri_blocks=1521912901_424070180_4_0_0__34200&srepoch=1787139780&srpvid=977b522e985300ae&type=total&ucfs=1&", "addr": "73 Tyne St, 9400,Oamaru", "notes": ["2/23前可以取消", "A code to the glass front door will be sent on the day of your arrival. When you arrive, come through the pink front door first, which is always unlocked, there you will find the second glass door where you will enter your door code."]}, {"dates": "2027/2/27-3/1", "dow": "六、日", "place": "wanaka", "town": "瓦納卡", "townEn": "Wānaka", "name": "KIWI", "type": "bnb", "room": "2-bedroom & 1-single single", "site": "bnb", "siteLink": "https://www.airbnb.com.tw/rooms/1450300953523634904?adults=4&check_in=2027-02-27&check_out=2027-03-01&children=1&search_mode=regular_search&source_impression_id=p3_1787234187_P31qeD4HGD9omCI3&previous_page_section_name=1000&federated_search_id=34e9ebfc-2057-487b-bf6d-8b5f95aae3b2", "addr": "8 Kapuka Lane, Wānaka 9305, New Zealand", "notes": ["1/28前可取消", "Keys need to be collected from Te Wanaka Lodge at 23 Brownston street.\nOur operating hours are from 8am-8pm."]}, {"dates": "2027/3/1-3/3", "dow": "一、二", "place": "Te Anau", "town": "蒂阿瑙", "townEn": "Te Anau", "name": "New 3 Bedroom House in Te Anau!", "type": "bnb", "room": "3-bedroom", "site": "bnb", "siteLink": "https://www.airbnb.com.tw/rooms/888070861685676079?adults=4&check_in=2027-03-01&check_out=2027-03-03&children=1&search_mode=regular_search&source_impression_id=p3_1787404894_P3bKzWv5bMSFIFLv&previous_page_section_name=1000&federated_search_id=ae86169c-f78e-4b0f-99bb-92a8d9234055&translate_ugc=true&scroll_to_review=1727188715067076195&review_page_entrypoint=show_more", "addr": "52 Burnby Drive, Te Anau 9679, New Zealand", "notes": []}, {"dates": "2027/3/3-3/6", "dow": "三、四、五", "place": "Jack's point", "town": "傑克角", "townEn": "Jack's Point", "name": "Hidden Gem Special Offer Sleeps 6", "type": "bnb", "room": "3-bedroom", "site": "bnb", "siteLink": "https://www.airbnb.com.tw/rooms/1521513462505486995?adults=4&check_in=2027-03-03&check_out=2027-03-06&children=1&search_mode=regular_search&source_impression_id=p3_1787633835_P3rL4Vk1HDJlqfNp&previous_page_section_name=1000&federated_search_id=b02d01d1-5e05-4fdb-85c5-f341ec226ad1&translate_ugc=false", "addr": "34 Kernel Loop, Queenstown 9371, New Zealand", "notes": []}, {"dates": "2027-03-06", "dow": "六", "place": "皇后鎮機場", "town": "皇后鎮", "townEn": "Queenstown", "name": "Holiday Inn QUEENSTOWN REMARKABLES PARK by IHG", "type": "飯店", "room": "1-king size", "site": "易遊網", "siteLink": "https://hotel.eztravel.com.tw/detail?HotelID=75410656&CityID=3860&CheckInDate=2027-03-06&CheckOutDate=2027-03-07&Person=3&ListMinPrice=undefined", "addr": "28 Red Oaks Drive，Frankton，皇后鎮，紐西蘭", "notes": []}], "bases": [{"stay": "City Centre Modern Townhouse", "town": "基督城", "townEn": "Christchurch", "from": "2027-02-20", "nights": 2, "ll": [-43.5262, 172.6392], "day": 2}, {"stay": "May's Place", "town": "蒂卡波", "townEn": "Tekapo", "from": "2027-02-22", "nights": 2, "ll": [-44.0075, 170.472], "day": 4}, {"stay": "Mt Cook Lodge & Motels", "town": "庫克山", "townEn": "Mt Cook", "from": "2027-02-24", "nights": 2, "ll": [-43.7348, 170.0985], "day": 6}, {"stay": "Top of Tyne - Peace, Comfort & Local Connection", "town": "奧瑪魯", "townEn": "Ōamaru", "from": "2027-02-26", "nights": 1, "ll": [-45.1003, 170.969], "day": 8}, {"stay": "KIWI", "town": "瓦納卡", "townEn": "Wānaka", "from": "2027-02-27", "nights": 2, "ll": [-44.6935, 169.156], "day": 9}, {"stay": "New 3 Bedroom House in Te Anau!", "town": "蒂阿瑙", "townEn": "Te Anau", "from": "2027-03-01", "nights": 2, "ll": [-45.4055, 167.725], "day": 11}, {"stay": "Hidden Gem Special Offer Sleeps 6", "town": "傑克角", "townEn": "Jack's Point", "from": "2027-03-03", "nights": 3, "ll": [-45.0735, 168.7485], "day": 13}, {"stay": "Holiday Inn QUEENSTOWN REMARKABLES PARK by IHG", "town": "皇后鎮", "townEn": "Queenstown", "from": "2027-03-06", "nights": 1, "ll": [-45.0278, 168.7455], "day": 16}], "built": "2026/11/23 17:45"};
+const $app = document.getElementById('app');
+const GK = {'全體':'all','大人':'adult','克家':'kfam'};
+const GLABEL = {all:'全體',adult:'大人組',kfam:'克家'};
+const store = {
+  get(k,d){try{const v=localStorage.getItem('nz27-'+k);return v===null?d:JSON.parse(v)}catch(e){return d}},
+  set(k,v){try{localStorage.setItem('nz27-'+k,JSON.stringify(v))}catch(e){}}
+};
+let view = store.get('view','all');
+const esc = s => String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const gk = it => GK[it.group]||'all';
+const visible = it => view==='all' || gk(it)==='all' || gk(it)===view;
+const AIR = {CHC:'Christchurch Airport',ZQN:'Queenstown Airport',AKL:'Auckland Airport',TPE:'Taoyuan International Airport'};
+const AIRZH = {CHC:'基督城',ZQN:'皇后鎮',AKL:'奧克蘭',TPE:'桃園'};
+const mapSearch = q => 'https://www.google.com/maps/search/?api=1&query='+encodeURIComponent(q);
+const ICON = {
+  pin:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 21s-7-6.2-7-11.5A7 7 0 0 1 19 9.5C19 14.8 12 21 12 21z"/><circle cx="12" cy="9.5" r="2.5"/></svg>',
+  link:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 4h6v6M20 4l-9 9M18 14v5a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V7a1 1 0 0 1 1-1h5"/></svg>',
+  route:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="6" cy="18" r="2.5"/><circle cx="18" cy="6" r="2.5"/><path d="M8.5 18H15a3 3 0 0 0 0-6H9a3 3 0 0 1 0-6h6.5"/></svg>',
+  car:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 16V11l2-5h10l2 5v5"/><path d="M3 16h18M5 11h14"/><circle cx="7.5" cy="16.5" r="1.8"/><circle cx="16.5" cy="16.5" r="1.8"/></svg>',
+  bus:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="5" y="3" width="14" height="15" rx="3"/><path d="M5 11h14M8 21v-3M16 21v-3"/><circle cx="8.5" cy="14.5" r="1"/><circle cx="15.5" cy="14.5" r="1"/></svg>',
+  walk:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="13" cy="4" r="2"/><path d="M9 21l3-7 3 3v4M7 12l3-4 4 1 3 3"/></svg>'
+};
+const MOVE = {car:['car','開車'],bus:['bus','搭公車'],walk:['walk','步行']};
+
+/* ------------------ 手繪地圖：地理資料（手動描的約略座標） ------------------ */
+const COAST = [[-40.50,172.65],[-40.62,172.95],[-40.82,173.02],[-41.08,173.00],[-41.27,173.28],[-41.02,173.55],[-40.88,173.85],[-41.05,174.30],[-41.30,174.08],[-41.55,174.22],[-41.75,174.28],[-42.05,174.00],[-42.42,173.70],[-42.85,173.32],[-43.10,172.85],[-43.38,172.72],[-43.52,172.74],[-43.58,172.79],[-43.61,173.05],[-43.82,173.12],[-43.90,172.88],[-43.80,172.55],[-43.95,172.20],[-44.12,171.88],[-44.38,171.28],[-44.75,171.17],[-44.95,171.10],[-45.08,171.00],[-45.115,170.99],[-45.25,170.90],[-45.39,170.875],[-45.62,170.72],[-45.80,170.74],[-45.90,170.50],[-46.10,170.15],[-46.42,169.80],[-46.66,169.10],[-46.62,168.35],[-46.38,168.00],[-46.25,167.60],[-46.18,166.70],[-45.82,166.50],[-45.40,166.92],[-44.98,167.38],[-44.65,167.88],[-44.30,168.10],[-43.97,168.62],[-43.87,169.02],[-43.62,169.45],[-43.40,169.95],[-43.12,170.48],[-42.72,170.97],[-42.45,171.20],[-42.10,171.33],[-41.75,171.60],[-41.30,172.10],[-40.85,172.35]];
+const NORTH = [[-34.42,172.68],[-35.0,173.4],[-35.9,174.5],[-36.6,174.75],[-37.0,175.6],[-37.6,176.0],[-37.95,177.1],[-37.65,178.5],[-38.7,178.0],[-39.6,177.0],[-40.5,176.4],[-41.4,175.3],[-41.3,174.8],[-40.6,175.1],[-40.0,174.9],[-39.5,173.8],[-38.8,174.6],[-38.0,174.8],[-37.3,174.7],[-36.6,174.3],[-35.8,173.8],[-35.0,173.1]];
+const TAIWAN = [[25.30,121.55],[25.0,121.95],[24.6,121.85],[24.0,121.62],[23.1,121.40],[22.4,120.90],[21.9,120.85],[22.3,120.62],[22.9,120.15],[23.5,120.15],[24.2,120.48],[24.8,120.90],[25.15,121.25]];
+const LAKES = [
+  [[[-43.99,170.495],[-43.92,170.52],[-43.80,170.56]],3.5],
+  [[[-44.16,170.17],[-44.08,170.17],[-43.99,170.18],[-43.94,170.20]],5],
+  [[[-44.30,169.86],[-44.17,169.81]],3.5],
+  [[[-44.686,169.125],[-44.672,169.10],[-44.664,169.065],[-44.64,169.06],[-44.58,169.07],[-44.50,169.03],[-44.40,169.02]],2.8],
+  [[[-44.58,169.27],[-44.45,169.29],[-44.33,169.30]],3.5],
+  [[[-45.33,168.72],[-45.20,168.725],[-45.10,168.705],[-45.065,168.66],[-45.07,168.55],[-45.08,168.47],[-45.02,168.42],[-44.93,168.38],[-44.87,168.36]],3.2],
+  [[[-45.040,168.665],[-45.034,168.70],[-45.029,168.722]],1.1],
+  [[[-45.44,167.66],[-45.33,167.68],[-45.20,167.74],[-45.05,167.83]],5],
+  [[[-45.56,167.55],[-45.52,167.45]],4],
+  [[[-44.40,170.26],[-44.46,170.14]],2.5]
+];
+// 城鎮近景用的地標（放大到市區時才畫）
+const LOCAL = [
+  {k:'park',name:'海格利公園',pts:[[-43.5180,172.6160],[-43.5240,172.6275],[-43.5330,172.6268],[-43.5385,172.6230],[-43.5360,172.6140],[-43.5260,172.6080]]},
+  {k:'river',name:'雅芳河',pts:[[-43.5240,172.6150],[-43.5290,172.6230],[-43.5318,172.6290],[-43.5308,172.6335],[-43.5288,172.6372],[-43.5262,172.6412],[-43.5252,172.6480],[-43.5230,172.6560]]},
+  {k:'water',name:'蒂卡波湖',pts:[[-44.0035,170.476],[-44.0044,170.4855],[-44.0030,170.4905],[-43.995,170.500],[-43.975,170.505],[-43.975,170.478],[-43.990,170.476]]},
+  {k:'water',name:'瓦卡蒂普湖',pts:[[-45.0335,168.640],[-45.0345,168.6585],[-45.0350,168.664],[-45.040,168.670],[-45.060,168.670],[-45.060,168.630]]},
+  {k:'water',name:'瓦卡蒂普湖',pts:[[-45.065,168.735],[-45.090,168.738],[-45.100,168.730],[-45.100,168.700],[-45.065,168.700]]},
+  {k:'water',name:'瓦納卡湖',pts:[[-44.6955,169.120],[-44.6960,169.1300],[-44.6958,169.1380],[-44.690,169.145],[-44.675,169.130],[-44.672,169.100],[-44.685,169.105]]},
+  {k:'water',name:'奧瑪魯港',pts:[[-45.090,170.985],[-45.098,170.978],[-45.104,170.976],[-45.1105,170.9845],[-45.118,170.995],[-45.118,171.02],[-45.090,171.02]]},
+  {k:'water',name:'蒂阿瑙湖',pts:[[-45.400,167.712],[-45.410,167.714],[-45.418,167.712],[-45.425,167.703],[-45.430,167.700],[-45.430,167.680],[-45.400,167.680]]},
+  {k:'water',name:'瓦卡蒂普湖',pts:[[-44.855,168.380],[-44.852,168.3835],[-44.858,168.392],[-44.875,168.390],[-44.875,168.370]]},
+  {k:'water',name:'Lake Tewa',pts:[[-45.0800,168.7455],[-45.0805,168.7485],[-45.0825,168.7490],[-45.0830,168.7460]]},
+  {k:'river',name:'Arrow River',pts:[[-44.930,168.815],[-44.9365,168.826],[-44.9385,168.834],[-44.944,168.845]]},
+  {k:'river',name:'Hooker River',pts:[[-43.700,170.090],[-43.712,170.094],[-43.722,170.098],[-43.732,170.104]]}
+];
+const PEAKS = [[-43.595,170.142,'Aoraki 庫克山 3,724m'],[-44.648,169.055,'Roys Peak 1,578m'],[-45.07,168.81,'The Remarkables'],[-43.98,170.12,''],[-44.25,169.55,''],[-44.55,168.85,''],[-44.95,168.30,''],[-43.35,170.90,''],[-42.95,171.55,''],[-45.30,167.55,''],[-44.75,168.65,''],[-43.75,170.40,'']];
+const TOWNLABELS=[[-43.53,172.63,'基督城'],[-44.10,170.83,'Fairlie'],[-44.005,170.48,'蒂卡波'],[-44.26,170.10,'Twizel'],[-43.735,170.10,'庫克山村'],[-45.10,170.97,'奧瑪魯'],[-44.73,171.05,'Waimate'],[-44.49,169.97,'Omarama'],[-44.70,169.14,'瓦納卡'],[-45.04,169.20,'Cromwell'],[-45.03,168.66,'皇后鎮'],[-44.94,168.83,'箭鎮'],[-44.85,168.39,'Glenorchy'],[-45.414,167.718,'蒂阿瑙'],[-45.33,168.72,'Kingston'],[-44.67,167.92,'米佛峽灣'],[-45.07,168.75,'傑克角']];
+
+function project(bb,W,H,pad){
+  const lat0=(bb[0]+bb[1])/2, k=Math.cos(lat0*Math.PI/180);
+  const dx=(bb[3]-bb[2])*k, dy=bb[1]-bb[0];
+  const s=Math.min((W-2*pad)/dx,(H-2*pad)/dy);
+  const ox=(W-dx*s)/2, oy=(H-dy*s)/2;
+  return {p:([la,lo])=>[+(ox+(lo-bb[2])*k*s).toFixed(1),+(oy+(bb[1]-la)*s).toFixed(1)], pxKm:s/111.32, spanKm:Math.max(W/s*111.32,H/s*111.32)};
+}
+const polyD = (pts,P,close)=>pts.map((q,i)=>(i?'L':'M')+P.p(q).join(' ')).join('')+(close?'Z':'');
+function curveD(xy){
+  let d='M'+xy[0].join(' ');
+  for(let i=1;i<xy.length;i++){const [x0,y0]=xy[i-1],[x1,y1]=xy[i];const mx=(x0+x1)/2,my=(y0+y1)/2,dx=x1-x0,dy=y1-y0;const o=(i%2?1:-1)*0.12;d+=` Q${(mx-dy*o).toFixed(1)} ${(my+dx*o).toFixed(1)} ${x1} ${y1}`}
+  return d;
+}
+function scaleBar(P,W,H){
+  const nice=[0.05,0.1,0.2,0.5,1,2,5,10,20,50,100,200];
+  let km=nice[0]; for(const n of nice){ if(n*P.pxKm<=92) km=n; }
+  const len=km*P.pxKm, x=14, y=H-16;
+  const lab = km<1 ? (km*1000)+' 公尺' : km+' 公里';
+  return `<g style="color:var(--map-ink)"><path d="M${x} ${y-4}V${y}H${(x+len).toFixed(1)}V${y-4}M${(x+len/2).toFixed(1)} ${y}V${y-2.5}" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/><text x="${x}" y="${y-8}" font-size="10" fill="currentColor">${lab}</text></g>`;
+}
+const northArrow=(W)=>`<g transform="translate(${W-20},22)" style="color:var(--map-ink)"><path d="M0 -11L5 5L0 2L-5 5Z" fill="currentColor"/><text x="0" y="17" font-size="9" text-anchor="middle" fill="currentColor">北</text></g>`;
+const DEFS=`<defs><filter id="rough" x="-5%" y="-5%" width="110%" height="110%"><feTurbulence type="fractalNoise" baseFrequency="0.035" numOctaves="2" seed="7"/><feDisplacementMap in="SourceGraphic" scale="2.6"/></filter></defs>`;
+function geoLayer(P,W,H,{peaks=true,peakLabels=true}={}){
+  let g=`<rect width="${W}" height="${H}" style="fill:var(--map-sea)"/>`;
+  g+=`<path d="${polyD(COAST,P,true)}" style="fill:var(--map-land);stroke:var(--map-coast)" stroke-width="1.2" stroke-linejoin="round" filter="url(#rough)"/>`;
+  for(const [line,w] of LAKES){g+=`<path d="${polyD(line,P)}" fill="none" style="stroke:var(--map-water)" stroke-width="${Math.max(1.5,w*P.pxKm).toFixed(1)}" stroke-linecap="round" stroke-linejoin="round" filter="url(#rough)"/>`}
+  if(peaks){for(const [la,lo,name] of PEAKS){const [x,y]=P.p([la,lo]);if(x<-10||y<-10||x>W+10||y>H+10)continue;
+    g+=`<path d="M${x-7} ${y+5}L${x} ${y-6}L${x+7} ${y+5}" style="fill:var(--map-mtn);stroke:var(--map-ink)" stroke-width="1" stroke-linejoin="round" opacity=".8"/>`;
+    if(name&&peakLabels)g+=`<text x="${x}" y="${y+16}" font-size="9" text-anchor="middle" style="fill:var(--map-ink)">${esc(name)}</text>`;}}
+  return g;
+}
+function localLayer(P,W,H){
+  let g=`<rect width="${W}" height="${H}" style="fill:var(--map-land)"/>`, labels='';
+  for(const f of LOCAL){
+    const xy=f.pts.map(q=>P.p(q)); const xs=xy.map(q=>q[0]), ys=xy.map(q=>q[1]);
+    if(Math.max(...xs)<0||Math.min(...xs)>W||Math.max(...ys)<0||Math.min(...ys)>H) continue;
+    const d=polyD(f.pts,P,f.k!=='river');
+    if(f.k==='river') g+=`<path d="${d}" fill="none" style="stroke:var(--map-water)" stroke-width="${Math.max(2.5,0.03*P.pxKm).toFixed(1)}" stroke-linecap="round" stroke-linejoin="round" filter="url(#rough)"/>`;
+    else g+=`<path d="${d}" style="fill:var(--map-${f.k==='park'?'park':'water'});stroke:var(--map-coast)" stroke-width=".8" stroke-linejoin="round" filter="url(#rough)"/>`;
+    // 名稱放在可見範圍內的中心
+    const vis=xy.filter(([x,y])=>x>20&&x<W-20&&y>20&&y<H-20); if(!vis.length) continue;
+    const cx=vis.reduce((a,q)=>a+q[0],0)/vis.length, cy=vis.reduce((a,q)=>a+q[1],0)/vis.length;
+    labels+=`<text x="${cx.toFixed(1)}" y="${cy.toFixed(1)}" font-size="9.5" font-style="italic" text-anchor="middle" style="fill:var(--map-ink)" opacity=".85">${esc(f.name)}</text>`;
+  }
+  return g+labels;
+}
+const COLOR = {'g-adult':'var(--adult)','g-kfam':'var(--kfam)','':'var(--accent)'};
+const HOUSE = (x,y)=>`<g transform="translate(${x} ${y})"><rect x="-6.5" y="-6.5" width="13" height="13" rx="3.5" style="fill:var(--stamp);stroke:var(--card)" stroke-width="1.5"/><path d="M-3.4 0.2L0 -3L3.4 0.2V3.2H-3.4Z" style="fill:var(--card)"/></g>`;
+function marker(x,y,label,cls,isStay){
+  const w = Math.max(20, 8+String(label).length*6.6);
+  let s=`<g><rect x="${x-w/2}" y="${y-10}" width="${w}" height="20" rx="10" style="fill:${COLOR[cls]||COLOR['']};stroke:var(--card)" stroke-width="2"/><text x="${x}" y="${y+3.8}" font-size="11" font-weight="700" text-anchor="middle" style="fill:var(--card)">${esc(label)}</text>`;
+  if(isStay) s+=HOUSE(x+w/2+1,y-10);
+  return s+'</g>';
+}
+// 地名拆成中文、英文兩行
+function nameParts(t){
+  t=t.replace(/[（(][^）)]*[）)]/g,'').replace(/^(前往|午餐：|晚餐：|超市採買|超市：|中間停靠)\s*/,'').trim();
+  const zh=(t.match(/[㐀-鿿][㐀-鿿·・]*/g)||[]).join('');
+  const en=t.replace(/[㐀-鿿·・，,]+/g,' ').replace(/\s+/g,' ').trim();
+  const cut=(s,n)=>s.length>n?s.slice(0,n-1)+'…':s;
+  return zh ? [cut(zh,8), cut(en,22)] : [cut(en,22), ''];
+}
+const textW=(s,fs)=>[...s].reduce((a,c)=>a+(/[㐀-鿿]/.test(c)?fs:fs*0.56),0);
+
+function dayLocations(d){
+  const locs=[]; const byItem=new Map();
+  const add=(ll,title,it,key)=>{
+    let L=locs.find(l=>Math.abs(l.ll[0]-ll[0])<0.0006&&Math.abs(l.ll[1]-ll[1])<0.0008);
+    if(!L){L={ll,title,groups:new Set(),stay:false,minor:true,q:key,n:locs.length+1};locs.push(L)}
+    L.groups.add(gk(it)); if(it.stay)L.stay=true; if(!it.minor||it.stay){if(L.minor)L.title=title;L.minor=false}
+    byItem.set(it,L);
+  };
+  for(const it of d.items){
+    if(!visible(it)) continue;
+    if(it.flight){const f=it.flight; for(const [c,ll] of [[f.fromCode,f.fromLL],[f.toCode,f.toLL]]){ if(ll&&ll[0]<-40.3) add(ll,AIRZH[c]+'機場 '+AIR[c].replace(' Airport',''),{...it,minor:false},AIR[c]); } continue;}
+    if(it.ll) add(it.ll,it.title,it,it.map);
+  }
+  for(const L of locs){const g=[...L.groups];L.g=g;L.cls=g.length===1&&g[0]!=='all'?'g-'+g[0]:'';}
+  return {locs,byItem};
+}
+function dayMap(d,locs){
+  const W=360,H=260;
+  const flights=d.items.filter(it=>it.flight&&visible(it));
+  if(locs.length<=1 && flights.length) return flightMap(flights,W,H);
+  if(!locs.length) return '';
+  let lats=locs.map(l=>l.ll[0]), lons=locs.map(l=>l.ll[1]);
+  let bb=[Math.min(...lats),Math.max(...lats),Math.min(...lons),Math.max(...lons)];
+  const minSpan=0.012;
+  if(bb[1]-bb[0]<minSpan){const c=(bb[0]+bb[1])/2;bb[0]=c-minSpan/2;bb[1]=c+minSpan/2}
+  if(bb[3]-bb[2]<minSpan*1.4){const c=(bb[2]+bb[3])/2;bb[2]=c-minSpan*.7;bb[3]=c+minSpan*.7}
+  const P=project(bb,W,H,44);
+  const big=P.spanKm>=12;
+  let svg=`<svg viewBox="0 0 ${W} ${H}" role="img" aria-label="第${d.n}天地圖" font-family="var(--font-display)">${DEFS}`;
+  svg+= big? geoLayer(P,W,H,{peaks:P.spanKm<400}) : localLayer(P,W,H);
+  const occupied=[]; // 已用掉的區塊（避免文字重疊）
+  if(big) for(const [la,lo,name] of TOWNLABELS){const [x,y]=P.p([la,lo]);if(x<10||y<10||x>W-10||y>H-24)continue;
+    svg+=`<text x="${x}" y="${y+24}" font-size="10" text-anchor="middle" style="fill:var(--map-ink);paint-order:stroke;stroke:var(--map-land);stroke-width:3px">${esc(name)}</text>`}
+  const xy=locs.map(l=>P.p(l.ll));
+  // 路線：分頭的日子，大人組和克家各畫一條
+  const split=view==='all'&&locs.some(l=>l.cls);
+  const routes=split?[['adult','g-adult'],['kfam','g-kfam']]:[[view,view==='all'?'':'g-'+view]];
+  const drawn=[];
+  for(const [g,cls] of routes){
+    const pts=locs.map((l,i)=>[l,xy[i]]).filter(([l])=>g==='all'||l.g.includes('all')||l.g.includes(g)).map(p=>p[1]);
+    if(pts.length>1){svg+=`<path d="${curveD(pts)}" fill="none" style="stroke:${COLOR[cls]}" stroke-width="2.4" stroke-dasharray="1 6" stroke-linecap="round"/>`;drawn.push([g,cls])}
+  }
+  // 太近的點合成一個標記
+  const clusters=[];
+  locs.forEach((l,i)=>{const [x,y]=xy[i];const c=clusters.find(c=>Math.hypot(c.x-x,c.y-y)<17);if(c){c.items.push(l)}else clusters.push({x,y,items:[l]})});
+  for(const c of clusters){const ns=c.items.map(l=>l.n);c.lab=ns.length===1?String(ns[0]):ns.length===2?ns.join('·'):`${ns[0]}-${ns.at(-1)}`;c.w=Math.max(20,8+c.lab.length*6.6);occupied.push([c.x-c.w/2-2,c.y-12,c.w+4,24])}
+  occupied.push([0,H-34,110,34],[W-36,0,36,44],[0,0,82,86]);
+  // 地名標籤（只標重要地點）
+  let labels='';
+  const fits=(b)=>b[0]>=4&&b[1]>=4&&b[0]+b[2]<=W-4&&b[1]+b[3]<=H-4&&!occupied.some(o=>b[0]<o[0]+o[2]&&b[0]+b[2]>o[0]&&b[1]<o[1]+o[3]&&b[1]+b[3]>o[1]);
+  for(const c of clusters){
+    const L=c.items.find(l=>!l.minor); if(!L) continue;
+    const [a,b2]=nameParts(L.title); const w=Math.max(textW(a,12),textW(b2,9))+4, h=b2?28:16;
+    const cand=[[c.x+c.w/2+5,c.y-(b2?11:6),'start'],[c.x-c.w/2-5-w,c.y-(b2?11:6),'start'],[c.x-w/2,c.y-14-h,'start'],[c.x-w/2,c.y+14,'start']];
+    for(const [bx,by] of cand){const box=[bx,by,w,h];if(!fits(box))continue;occupied.push(box);
+      labels+=`<text x="${(bx+2).toFixed(1)}" y="${(by+12).toFixed(1)}" font-size="12" font-weight="700" style="fill:var(--ink);paint-order:stroke;stroke:var(--map-land);stroke-width:3.5px">${esc(a)}</text>`;
+      if(b2) labels+=`<text x="${(bx+2).toFixed(1)}" y="${(by+24).toFixed(1)}" font-size="9" style="fill:var(--map-ink);paint-order:stroke;stroke:var(--map-land);stroke-width:3px">${esc(b2)}</text>`;
+      break;}
+  }
+  svg+=labels;
+  for(let i=clusters.length-1;i>=0;i--){const c=clusters[i];
+    const cls=c.items.every(l=>l.cls===c.items[0].cls)?c.items[0].cls:'';
+    svg+=marker(c.x,c.y,c.lab,cls,c.items.some(l=>l.stay))}
+  if(split&&drawn.length>1){
+    svg+=`<g transform="translate(${W-96} ${H-44})"><rect width="88" height="36" rx="8" style="fill:var(--card);stroke:var(--line)" opacity=".95"/>`+
+      drawn.map(([g,cls],k)=>`<path d="M8 ${12+k*13}H26" style="stroke:${COLOR[cls]}" stroke-width="2.6" stroke-dasharray="1 5" stroke-linecap="round"/><text x="32" y="${16+k*13}" font-size="10" style="fill:var(--ink)">${GLABEL[g]}</text>`).join('')+'</g>';
+  }
+  svg+=scaleBar(P,W,H)+northArrow(W)+inset(bb)+'</svg>';
+  return svg;
+}
+function inset(bb){
+  const w=64,h=70,x0=8,y0=8, P=project([-46.7,-40.4,166.4,174.4],w,h,3);
+  const c=P.p([(bb[0]+bb[1])/2,(bb[2]+bb[3])/2]);
+  const a=P.p([bb[1],bb[2]]), b=P.p([bb[0],bb[3]]);
+  const bw=Math.max(5,b[0]-a[0]), bh=Math.max(5,b[1]-a[1]);
+  return `<g transform="translate(${x0} ${y0})"><rect width="${w}" height="${h}" rx="8" style="fill:var(--map-sea);stroke:var(--map-coast)" stroke-width=".8" opacity=".95"/><path d="${polyD(COAST,P,true)}" style="fill:var(--map-land);stroke:var(--map-coast)" stroke-width=".6"/><rect x="${(c[0]-bw/2).toFixed(1)}" y="${(c[1]-bh/2).toFixed(1)}" width="${bw.toFixed(1)}" height="${bh.toFixed(1)}" rx="1.5" fill="none" style="stroke:var(--stamp)" stroke-width="1.6"/></g>`;
+}
+// 航線圖：畫出台灣、紐西蘭南北島
+function flightMap(flights,W,H){
+  const pts={}; for(const it of flights){const f=it.flight;if(f.fromLL)pts[f.fromCode]=f.fromLL;if(f.toLL)pts[f.toCode]=f.toLL;}
+  const merc=la=>Math.log(Math.tan(Math.PI/4+la*Math.PI/360))*180/Math.PI;
+  // 台灣、紐西蘭各自放大，讓輪廓看得清楚（示意，不依比例）
+  const intl=!!pts.TPE, f=intl?2.6:1;
+  const grow=(c,q)=>[c[0]+(q[0]-c[0])*f, c[1]+(q[1]-c[1])*f];
+  const NZC=[-40.5,173], TWC=[23.7,121];
+  const shapes=[NORTH.map(q=>grow(NZC,q)),COAST.map(q=>grow(NZC,q))]; if(intl) shapes.push(TAIWAN.map(q=>grow(TWC,q)));
+  for(const c in pts) pts[c]=grow(c==='TPE'?TWC:NZC,pts[c]);
+  const all=[...Object.values(pts),...shapes.flat()];
+  const xs=all.map(q=>q[1]), ys=all.map(q=>merc(q[0]));
+  const pad=26, minX=Math.min(...xs),maxX=Math.max(...xs),minY=Math.min(...ys),maxY=Math.max(...ys);
+  const s=Math.min((W-2*pad)/(maxX-minX),(H-2*pad)/(maxY-minY));
+  const ox=(W-(maxX-minX)*s)/2, oy=(H-(maxY-minY)*s)/2;
+  const pp=q=>[+(ox+(q[1]-minX)*s).toFixed(1), +(oy+(maxY-merc(q[0]))*s).toFixed(1)];
+  const shapeD=sh=>sh.map((q,i)=>(i?'L':'M')+pp(q).join(' ')).join('')+'Z';
+  let svg=`<svg viewBox="0 0 ${W} ${H}" role="img" aria-label="航線圖" font-family="var(--font-display)">${DEFS}<rect width="${W}" height="${H}" style="fill:var(--map-sea)"/>`;
+  for(const sh of shapes) svg+=`<path d="${shapeD(sh)}" style="fill:var(--map-land);stroke:var(--map-coast)" stroke-width="1.2" stroke-linejoin="round" filter="url(#rough)"/>`;
+  if(intl){const [x,y]=pp(TWC);svg+=`<text x="${x-30}" y="${y+4}" font-size="12" font-weight="700" text-anchor="end" style="fill:var(--map-ink)">台灣</text>`}
+  {const [x,y]=pp(grow(NZC,[-43,177]));svg+=`<text x="${x}" y="${y}" font-size="12" font-weight="700" style="fill:var(--map-ink)">紐西蘭</text>`}
+  for(const it of flights){const f=it.flight;if(!pts[f.fromCode]||!pts[f.toCode])continue;const [x0,y0]=pp(pts[f.fromCode]),[x1,y1]=pp(pts[f.toCode]);
+    const bend=Math.hypot(x1-x0,y1-y0)>80?.22:.5; const mx=(x0+x1)/2+(y1-y0)*bend, my=(y0+y1)/2-(x1-x0)*bend;
+    svg+=`<path d="M${x0} ${y0}Q${mx} ${my} ${x1} ${y1}" fill="none" style="stroke:var(--accent)" stroke-width="2" stroke-dasharray="2 6" stroke-linecap="round"/>`;
+    const tx=(mx+(x0+x1)/2)/2, ty=(my+(y0+y1)/2)/2;
+    svg+=`<text x="${tx+6}" y="${ty}" font-size="11" style="fill:var(--accent);paint-order:stroke;stroke:var(--map-sea);stroke-width:3px">✈ ${esc(f.code)}</text>`;}
+  const placed=[];
+  for(const c of Object.keys(pts)){const [x,y]=pp(pts[c]);const dy=placed.some(p=>Math.abs(p[0]-x)<60&&Math.abs(p[1]-y)<20)?-12:18;placed.push([x,y+dy]);
+    svg+=`<circle cx="${x}" cy="${y}" r="5.5" style="fill:var(--stamp);stroke:var(--card)" stroke-width="2"/><text x="${x+9}" y="${y+dy/3+4}" font-size="11.5" font-weight="700" style="fill:var(--ink);paint-order:stroke;stroke:var(--map-sea);stroke-width:3px">${esc(AIRZH[c]||c)} ${c}</text>`}
+  return svg+'</svg>';
+}
+function homeMap(){
+  const W=360,H=232, bb=[-45.9,-43.3,167.2,173.25];
+  const P=project(bb,W,H,6);
+  let svg=`<svg viewBox="0 0 ${W} ${H}" role="img" aria-label="南島路線圖" font-family="var(--font-display)">${DEFS}`+geoLayer(P,W,H,{peakLabels:false});
+  const towns=[[-44.10,170.83,'Fairlie'],[-44.73,171.05,'Waimate'],[-44.67,167.92,'米佛峽灣']];
+  const bases=[];for(const b of TRIP.bases){if(!b.ll)continue;const near=bases.find(x=>Math.abs(x.ll[0]-b.ll[0])<0.08&&Math.abs(x.ll[1]-b.ll[1])<0.1);if(near){near.ns.push(1);near.names.push(b.town)}else bases.push({...b,ns:[],names:[b.town]})}
+  let i=0;for(const b of bases){b.label=String(++i);for(let j=0;j<b.ns.length;j++)b.label+='·'+(++i)}
+  const xy=bases.map(b=>P.p(b.ll));
+  const te=bases.find(b=>b.townEn==='Te Anau');
+  if(te){const [x0,y0]=P.p(te.ll),[x1,y1]=P.p([-44.67,167.92]);svg+=`<path d="M${x0} ${y0}L${x1} ${y1}" style="stroke:var(--adult)" stroke-width="1.8" stroke-dasharray="1 5" stroke-linecap="round"/>`}
+  svg+=`<path d="${curveD(xy)}" fill="none" style="stroke:var(--accent)" stroke-width="2.4" stroke-dasharray="1 6" stroke-linecap="round"/>`;
+  for(const [la,lo,n] of towns){const [x,y]=P.p([la,lo]);svg+=`<circle cx="${x}" cy="${y}" r="2.6" style="fill:var(--map-ink)"/><text x="${x+5}" y="${y+3.5}" font-size="9" style="fill:var(--map-ink)">${n}</text>`}
+  const side={'基督城':[-13,16,'end'],'蒂卡波':[13,4,'start'],'庫克山':[-13,4,'end'],'奧瑪魯':[13,4,'start'],'瓦納卡':[13,4,'start'],'蒂阿瑙':[-4,24,'end'],'傑克角':[0,26,'middle']};
+  bases.forEach((b,k)=>{const [x,y]=xy[k];svg+=marker(x,y,b.label,'',false);const [dx,dy,an]=side[b.town]||[13,4,'start'];
+    svg+=`<text x="${x+dx}" y="${y+dy}" font-size="11.5" font-weight="700" text-anchor="${an}" style="fill:var(--ink);paint-order:stroke;stroke:var(--map-land);stroke-width:3px">${esc(b.names.join('／'))}</text>`});
+  const [cx,cy]=P.p([-43.489,172.532]);
+  svg+=`<path d="M${W-10} 8Q${cx+24} ${cy-30} ${cx+9} ${cy-7}" fill="none" style="stroke:var(--ink-soft)" stroke-width="1.4" stroke-dasharray="3 4"/><text x="${cx-14}" y="${Math.max(12,cy-14)}" font-size="10" text-anchor="end" style="fill:var(--ink-soft)">✈ 2/20 抵達</text>`;
+  return svg+scaleBar(P,W,H)+northArrow(W)+'</svg>';
+}
+
+/* ------------------ 首頁插圖：日系線條風 ------------------ */
+function heroArt(){
+  const tuft=(x,y,s=1)=>`<path d="M${x} ${y}q${-3*s} ${-8*s} ${-7*s} ${-11*s}M${x} ${y}q${-1*s} ${-10*s} ${1*s} ${-15*s}M${x} ${y}q${2*s} ${-8*s} ${7*s} ${-11*s}M${x} ${y}q${4*s} ${-5*s} ${10*s} ${-6*s}" fill="none" style="stroke:var(--kfam)" stroke-width="1.2" stroke-linecap="round"/>`;
+  const L='fill="none" style="stroke:var(--accent)" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"';
+  return `<svg viewBox="0 0 400 180" role="img" aria-label="蒂卡波湖、庫克山與奇異鳥的線條插畫">
+  <rect width="400" height="180" style="fill:var(--wash-sky)"/>
+  <circle cx="58" cy="40" r="14" ${L} opacity=".7"/>
+  <path d="M0 112L42 86L70 100L112 62L138 80L172 40L208 82L232 70L268 96L300 72L338 98L372 84L400 96" ${L}/>
+  <path d="M172 40L160 55L168 53L174 60L182 53L188 56M112 62L104 72L111 70L116 75M300 72L292 81L299 80L304 84" ${L} opacity=".8"/>
+  <path d="M60 106L96 90L130 104M222 98L258 88L300 104L340 96" ${L} opacity=".35"/>
+  <rect y="114" width="400" height="22" style="fill:var(--wash-lake)"/>
+  <path d="M20 121H70M110 126H180M230 121H262M300 128H372M150 132H196" ${L} opacity=".45"/>
+  <g transform="translate(300 100)" ${L}><path d="M0 14V2L7 -5L14 2V14Z"/><path d="M14 14V6H26V14"/><path d="M5 14V9H9V14"/><path d="M7 -5V-10M5 -8H9"/></g>
+  <path d="M0 136C80 130 170 142 250 135S360 131 400 137V180H0Z" style="fill:var(--wash-grass)"/>
+  ${tuft(24,160)}${tuft(66,150,.8)}${tuft(118,166,1.1)}${tuft(338,156)}${tuft(380,168,1.1)}${tuft(292,170,.8)}
+  <g transform="translate(186 128)">
+    <ellipse cx="22" cy="24" rx="24" ry="19" style="fill:var(--kiwi);stroke:var(--ink)" stroke-width="1.6"/>
+    <path d="M8 18q6 4 12 2M14 30q8 3 16 0M26 14q5 3 10 1" fill="none" style="stroke:var(--ink)" stroke-width="1" stroke-linecap="round" opacity=".5"/>
+    <circle cx="44" cy="12" r="10" style="fill:var(--kiwi);stroke:var(--ink)" stroke-width="1.6"/>
+    <circle cx="47" cy="10" r="1.6" style="fill:var(--ink)"/>
+    <path d="M53 14Q66 22 78 36" fill="none" style="stroke:var(--ink)" stroke-width="2" stroke-linecap="round"/>
+    <path d="M16 42L13 52M13 52H8M13 52H17M28 42L30 52M30 52H25M30 52H35" fill="none" style="stroke:var(--ink)" stroke-width="1.6" stroke-linecap="round"/>
+  </g>
+  </svg>`;
+}
+
+/* ------------------ 頁面 ------------------ */
+const md = iso => {const [y,m,d]=iso.split('-').map(Number);return `${m}/${d}`};
+const dayLabel = d => `${md(d.date)}（${d.dow}）`;
+const hasSplit = d => d.items.some(it=>gk(it)!=='all');
+const fmtMin = m => m>=60 ? `${Math.floor(m/60)} 小時${m%60?` ${m%60} 分`:''}` : `${m} 分`;
+
+function home(){
+  const days=TRIP.days, nights=TRIP.bases.reduce((a,b)=>a+b.nights,0);
+  return `<div class="hero">${heroArt()}</div>
+  <p class="eyebrow">南島 · NEW ZEALAND · 2027</p>
+  <h1 class="home-title">2027年踏入大洋洲(NZ)</h1>
+  <p class="who">克家（Chloe、Paul、Nora）・小蔡・維奇<br>${md(days[0].date)}（${days[0].dow}）出發 ～ ${md(days.at(-1).date)}（${days.at(-1).dow}）回台</p>
+  <div class="facts"><div class="fact"><b>${days.length}</b><span>天</span></div><div class="fact"><b>${TRIP.bases.length}</b><span>個住宿據點</span></div><div class="fact"><b>${nights}</b><span>晚在紐西蘭</span></div></div>
+  <h2 class="sec-h">路線<small>基督城取車，一路往南開到皇后鎮還車</small></h2>
+  <figure class="map" style="margin:0">${homeMap()}
+    <figcaption class="map-foot"><span class="map-note">手繪示意，位置與比例約略。綠色虛線是大人組的米佛峽灣一日遊；3/7 從皇后鎮搭機回台。</span></figcaption>
+    <ol class="legend">${(()=>{let n=0;return TRIP.bases.map(b=>`<li><span class="dot">${++n}</span><span>${esc(b.town)} ${md(b.from)}・${b.nights}晚</span></li>`).join('')})()}</ol>
+  </figure>
+  <h2 class="sec-h">每日行程<small>標示「分頭」的日子，大人組和克家各有安排</small></h2>
+  <ol class="days">${days.map(d=>`<li><a class="day-card" href="#day-${d.n}"><span class="d"><b>${md(d.date)}</b><span>週${d.dow}</span></span><span class="th">${esc(d.theme||'')}${hasSplit(d)?'<span class="split-mark">分頭</span>':''}<small>${d.stay?'住 '+esc(d.town||d.stay):'回台灣'}</small></span><span class="n">D${d.n}</span></a></li>`).join('')}</ol>
+  <p class="foot">資料更新：${esc(TRIP.built)}</p>`;
+}
+
+function linksOf(it){
+  const a=[];
+  if(it.map) a.push(['pin','地圖',mapSearch(it.map)]);
+  if(it.mapLink) a.push(['pin','地圖',it.mapLink]);
+  if(it.titleLink) a.push(['link','介紹',it.titleLink]);
+  if(it.noteLink) a.push(['link', it.note && it.note.length<=16 ? it.note : '連結', it.noteLink]);
+  return a;
+}
+function itemHTML(it,L){
+  const cls=gk(it);
+  const chips=[];
+  if(cls!=='all' && view==='all') chips.push(`<span class="chip g-${cls}">${GLABEL[cls]}</span>`);
+  if(it.stay) chips.push('<span class="chip stay">住宿</span>');
+  if(it.flag==='optional') chips.push(`<span class="chip opt">可略過${it.cond?'・'+esc(it.cond):''}</span>`);
+  const num = L ? `<span class="dot ${L.cls}" title="地圖編號">${L.n}</span>` : '';
+  let b=`<div class="ttl">${num}<span class="tx">${esc(it.title)}</span>${chips.join('')}</div>`;
+  if(it.alt) b+=`<p class="note">克家：${esc(it.alt)}</p>`;
+  if(it.note && !(it.noteLink && it.note.length<=16)) b+=`<p class="note">${esc(it.note)}</p>`;
+  if(it.flight){const f=it.flight;b+=`<div class="flight"><div class="ap"><b>${esc(f.fromCode)}</b><span>${esc(f.dep)}・${esc(AIRZH[f.fromCode]||'')}</span></div><div class="mid">${esc(f.code)}<br>${esc(f.depDate)}</div><div class="ap"><b>${esc(f.toCode)}</b><span>${esc(f.arr)}・${esc(AIRZH[f.toCode]||'')}</span></div></div>${f.note?`<p class="note">${esc(f.note)}</p>`:''}`}
+  if(it.booking) b+=`<div class="booking"><h4>訂單資訊</h4><ul>${it.booking.map(x=>`<li>${esc(x)}</li>`).join('')}</ul></div>`;
+  const ls=linksOf(it);
+  if(ls.length) b+=`<div class="links">${ls.map(([i,t,u])=>`<a class="lk" href="${esc(u)}" target="_blank" rel="noopener">${ICON[i]}${esc(t)}</a>`).join('')}</div>`;
+  return b;
+}
+function subRow(s,L){
+  const ls=linksOf(s);
+  const num=L?`<span class="dot ${L.cls}">${L.n}</span>`:'<span class="bullet" aria-hidden="true"></span>';
+  return `<li class="subrow">${num}<div class="nm">${esc(s.title)}${s.cat?`<span class="chip cat">${esc(s.cat)}</span>`:''}${s.flag==='optional'?'<span class="chip opt">可略過</span>':''}${s.note && !(s.noteLink&&s.note.length<=16)?`<p class="note">${esc(s.note)}</p>`:''}</div>
+  <div class="ic">${ls.map(([i,t,u])=>`<a href="${esc(u)}" target="_blank" rel="noopener" aria-label="${esc(t)}" title="${esc(t)}">${ICON[i]}</a>`).join('')}</div></li>`;
+}
+function moveRow(it){
+  const [ic,lab]=MOVE[it.mode]||MOVE.car;
+  return `<li class="move ${it.mode}"><span class="rail" aria-hidden="true"></span><span class="pill">${ICON[ic]}${lab} ${esc(it.drive)}</span></li>`;
+}
+function dayView(n){
+  const d=TRIP.days.find(x=>x.n===n)||TRIP.days[0];
+  const {locs,byItem}=dayLocations(d);
+  const blocks=[];
+  for(const it of d.items){
+    if(!visible(it)) continue;
+    const last=blocks.at(-1);
+    if(it.sub && last){(last.subs??=[]).push(it);continue}
+    if(it.flag==='backup' && last){(last.backups??=[]).push(it);continue}
+    blocks.push({it});
+  }
+  const driveTotal=d.items.filter(it=>visible(it)&&it.mode==='car').reduce((a,it)=>a+(it.driveMin||0),0);
+  const tl=blocks.map(({it,subs,backups})=>{
+    const cls=gk(it);
+    let li=it.drive?moveRow(it):'';
+    li+=`<li class="it ${cls!=='all'?'g-'+cls:''} ${it.flag==='optional'?'optional':''} ${it.booked?'booked':''}">${it.booked?'<span class="stamp" aria-label="已預訂">已訂</span>':''}<div class="t">${it.tag?`<span class="tag">${esc(it.tag)}</span>`:''}${esc(it.time)}</div><div class="body">${itemHTML(it,byItem.get(it))}`;
+    if(subs){const head=subs.some(s=>s.cat)?'推薦攤位':'順遊景點';
+      li+=`<div class="subbox"><div class="subhead">${head}・${subs.length} 個</div><ul>${subs.map(s=>subRow(s,byItem.get(s))).join('')}</ul></div>`;}
+    if(backups) li+=backups.map(bk=>`<div class="backup"><div class="lab">備案${bk.cond?'｜'+esc(bk.cond):''}</div>${itemHTML(bk,byItem.get(bk))}</div>`).join('');
+    return li+'</div></li>';
+  }).join('');
+  let route=d.routeLink;
+  if(!route && locs.length>1){
+    const q=locs.map(l=>l.q||l.title).filter(Boolean);
+    const wp=q.slice(1,-1).slice(0,9);
+    route=`https://www.google.com/maps/dir/?api=1&travelmode=driving&origin=${encodeURIComponent(q[0])}&destination=${encodeURIComponent(q.at(-1))}`+(wp.length?`&waypoints=${encodeURIComponent(wp.join('|'))}`:'');
+  } else if(!route && locs.length===1){ route=mapSearch(locs[0].q||locs[0].title) }
+  const map=dayMap(d,locs);
+  const i=TRIP.days.indexOf(d), prev=TRIP.days[i-1], next=TRIP.days[i+1];
+  const stayInfo=TRIP.stays.find(s=>s.name===d.stay);
+  const isFlight=locs.length<=1&&d.items.some(x=>x.flight);
+  return `<nav class="strip" aria-label="選擇日期">${TRIP.days.map(x=>`<a href="#day-${x.n}" ${x===d?'aria-current="page"':''}><b>${md(x.date)}</b>D${x.n}</a>`).join('')}</nav>
+  <div class="seg" role="group" aria-label="顯示哪一組的行程">${['all','adult','kfam'].map(v=>`<button type="button" id="seg-${v}" data-v="${v}" aria-pressed="${view===v}">${v==='all'?'全部':GLABEL[v]}</button>`).join('')}</div>
+  <p class="day-meta">第 ${d.n} 天，共 ${TRIP.days.length} 天・${dayLabel(d)}</p>
+  <h1 class="day-title">${esc(d.theme||'')}</h1>
+  ${d.stay?`<p class="tonight">今晚住：<a href="#stays"><b>${esc(d.stay)}</b></a>${stayInfo&&stayInfo.town?`（${esc(stayInfo.town)}）`:''}</p>`:''}
+  ${driveTotal?`<span class="today-drive">${ICON.car}今日開車約 ${fmtMin(driveTotal)}</span>`:''}
+  ${map?`<figure class="map">${map}<figcaption class="map-foot"><span class="map-note">${isFlight?'航線示意，陸地已放大、不依比例':'手繪示意，位置約略，北方朝上'}</span>${route&&!isFlight?`<a class="btn" href="${esc(route)}" target="_blank" rel="noopener">${ICON.route}在 Google 地圖開啟</a>`:''}</figcaption>
+  ${locs.length&&!isFlight?`<ol class="legend">${locs.map(l=>`<li><span class="dot ${l.cls}">${l.n}</span><span>${esc(l.title)}${l.stay?'（住宿）':''}</span></li>`).join('')}</ol>`:''}</figure>`:''}
+  ${tl?`<ol class="tl">${tl}</ol>`:'<p class="empty">這一組今天沒有另外的安排。</p>'}
+  <nav class="pager">${prev?`<a href="#day-${prev.n}">← 前一天<b>${md(prev.date)} ${esc(prev.theme||'')}</b></a>`:'<span></span>'}${next?`<a href="#day-${next.n}">後一天 →<b>${md(next.date)} ${esc(next.theme||'')}</b></a>`:''}</nav>`;
+}
+function transportView(){
+  return `<h1 class="day-title" style="margin-top:6px">交通</h1>
+  <h2 class="sec-h">航班<small>紐西蘭航空・免費託運每人 2 件，各 23 公斤</small></h2>
+  <div class="cards">${TRIP.flights.map(f=>`<article class="card"><div class="stay-town">${esc(f.code)}・${esc(f.depDate)}</div>
+  <div class="pass"><div><b>${esc(f.fromCode)}</b><small>${esc(f.from)}</small><small>${esc(f.depDate)} ${esc(f.dep)} 起飛</small></div><div class="arrow">→</div><div class="r"><b>${esc(f.toCode)}</b><small>${esc(f.to)}</small><small>${esc(f.arrDate)} ${esc(f.arr)} 抵達</small></div></div>
+  ${f.note?`<p class="note" style="margin-top:8px">${esc(f.note)}</p>`:''}</article>`).join('')}</div>
+  <h2 class="sec-h">租車</h2>
+  <article class="card" style="position:relative"><span class="stamp" aria-label="已預訂">已訂</span><h3 style="padding-right:52px">AVIS・Kia Carnival 或同級</h3><dl class="kv"><dt>預約代碼</dt><dd>23288927TB4</dd><dt>取車</dt><dd>2/22（一）10:00 基督城機場</dd><dt>還車</dt><dd>3/6（六）20:00 皇后鎮機場</dd><dt>內含</dt><dd>1 個兒童增高座椅、道路救援、零自負額、里程無限</dd><dt>提醒</dt><dd>額外駕駛要在取車時本人到場，帶護照、台灣駕照正本、國際駕照</dd></dl></article>`;
+}
+function staysView(){
+  return `<h1 class="day-title" style="margin-top:6px">住宿</h1>
+  <div class="cards" style="margin-top:14px">${TRIP.stays.map(s=>`<article class="card"><div class="stay-town">${esc(s.town||s.place)}・${esc(s.dates)}</div><h3>${esc(s.name)}</h3>
+  <dl class="kv">${s.room?`<dt>房型</dt><dd>${esc(s.type)}・${esc(s.room)}</dd>`:''}${s.addr?`<dt>地址</dt><dd>${esc(s.addr)}</dd>`:''}${s.site?`<dt>訂房</dt><dd>${s.siteLink?`<a href="${esc(s.siteLink)}" target="_blank" rel="noopener">${esc(s.site)}</a>`:esc(s.site)}</dd>`:''}</dl>
+  ${s.notes.map(n=>`<p class="note">${esc(n)}</p>`).join('')}
+  ${s.addr?`<div class="links"><a class="lk" href="${mapSearch(s.addr)}" target="_blank" rel="noopener">${ICON.pin}地圖</a></div>`:''}</article>`).join('')}</div>`;
+}
+const TODO=[
+  ['nzeta','申請 NZeTA 入境電子簽證（含觀光稅 IVL）','每個人都要辦，包括 Nora'],
+  ['nztd','出發前 24 小時內填寫 NZTD 入境申報','紐西蘭官方的數位入境卡'],
+  ['idp','克、書緯辦國際駕照','小蔡的國際駕照到 2028/1，OK'],
+  ['penguin','列印奧瑪魯企鵝門票（紙本）','企鵝中心不接受手機票'],
+  ['esim','買 eSIM（推薦 Skinny）','落地後撥 456 開通；週方案 NZ$20 含通話＋25GB'],
+  ['booking','訂位：Cucina、Star and Garter、The Fat Duck、Jack\'s Point Restaurant',''],
+  ['heli','確認大人組直升機、觀星、米佛峽灣是否已預訂',''],
+  ['barcode','出發前用手機掃碼 app 測試冬冬條碼','確認掃得出來'],
+  ['cash','準備少量紐幣現金','餵袋鼠只收現金；Roys Peak 步道箱 NZ$2'],
+];
+const GEAR=[['透氣防曬長袖或機能衣＋防曬外套',''],['墨鏡、遮陽帽、魔術頭巾',''],['護踝登山鞋＋羊毛登山襪','碎石陡坡，避免平底鞋'],['防風外套',''],['每人至少 2 公升水',''],['能量棒、簡易午餐',''],['護膝（可考慮）','']];
+function listView(){
+  const done=store.get('check',{});
+  const row=(id,t,s)=>`<li><label for="c-${id}"><input type="checkbox" id="c-${id}" data-id="${id}" ${done[id]?'checked':''}><span>${esc(t)}${s?`<small>${esc(s)}</small>`:''}</span></label></li>`;
+  return `<h1 class="day-title" style="margin-top:6px">清單</h1><p class="note">打勾只會記在你自己的手機上。</p>
+  <h2 class="sec-h">出發前待辦</h2><div class="card"><ul class="check">${TODO.map(([i,t,s])=>row(i,t,s)).join('')}</ul></div>
+  <h2 class="sec-h">Roys Peak 裝備<small>大人組・2/28</small></h2><div class="card"><ul class="check">${GEAR.map(([t,s],k)=>row('gear'+k,t,s)).join('')}</ul></div>`;
+}
+
+/* ------------------ 條碼 ------------------ */
+const EAN_L=['0001101','0011001','0010011','0111101','0100011','0110001','0101111','0111011','0110111','0001011'];
+const EAN_G=['0100111','0110011','0011011','0100001','0011101','0111001','0000101','0010001','0001001','0010111'];
+const EAN_R=['1110010','1100110','1101100','1000010','1011100','1001110','1010000','1000100','1001000','1110100'];
+const EAN_P=['LLLLLL','LLGLGG','LLGGLG','LLGGGL','LGLLGG','LGGLLG','LGGGLL','LGLGLG','LGLGGL','LGGLGL'];
+function ean13Bits(code){
+  const d=code.split('').map(Number), p=EAN_P[d[0]];
+  let b='101'; for(let i=1;i<=6;i++) b+=(p[i-1]==='L'?EAN_L:EAN_G)[d[i]];
+  b+='01010'; for(let i=7;i<=12;i++) b+=EAN_R[d[i]];
+  return b+'101';
+}
+const C128=['212222','222122','222221','121223','121322','131222','122213','122312','132212','221213','221312','231212','112232','122132','122231','113222','123122','123221','223211','221132','221231','213212','223112','312131','311222','321122','321221','312212','322112','322211','212123','212321','232121','111323','131123','131321','112313','132113','132311','211313','231113','231311','112133','112331','132131','113123','113321','133121','313121','211331','231131','213113','213311','213131','311123','311321','331121','312113','312311','332111','314111','221411','431111','111224','111422','121124','121421','141122','141221','112214','112412','122114','122411','142112','142211','241211','221114','413111','241112','134111','111242','121142','121241','114212','124112','124211','411212','421112','421211','212141','214121','412121','111143','111341','131141','114113','114311','411113','411311','113141','114131','311141','411131','211412','211214','211232','2331112'];
+function code128cBits(code){
+  const vals=[105]; for(let i=0;i<code.length;i+=2) vals.push(+code.slice(i,i+2));
+  let sum=105; for(let i=1;i<vals.length;i++) sum+=vals[i]*i; vals.push(sum%103, 106);
+  let b=''; for(const v of vals){const w=C128[v];for(let i=0;i<w.length;i++) b+=(i%2?'0':'1').repeat(+w[i])}
+  return b;
+}
+function barcodeSVG(bits){
+  const q=10, W=bits.length+2*q, H=60; let r='';
+  for(let i=0;i<bits.length;){ if(bits[i]==='1'){let j=i;while(bits[j]==='1')j++;r+=`<rect x="${i+q}" y="0" width="${j-i}" height="${H}"/>`;i=j}else i++ }
+  return `<svg viewBox="0 0 ${W} ${H}" preserveAspectRatio="none" style="height:96px" role="img" aria-label="條碼"><rect width="${W}" height="${H}" fill="#ffffff"/><g fill="#000000">${r}</g></svg>`;
+}
+const BARCODES=[
+  {name:'Everyday Rewards 會員價',where:'Woolworths、FreshChoice 超市；BP、g.a.s. 加油每公升折 6 分',type:'ean13',code:'9490048948807'},
+  {name:'Club+ 會員價',where:'New World、PAK\'nSAVE、Four Square 超市；Z、Caltex 與 New World／PAK\'nSAVE 加油站每公升折 8 分',type:'c128',code:'6059174262757453'},
+  {name:'Aotea Gifts 紀念品 95 折',where:'奧克蘭、羅托魯瓦、基督城、蒂卡波、皇后鎮分店',type:'ean13',code:'0011000042150'}
+];
+function barcodeView(){
+  const dong=TRIP.dong||[];
+  const src=dong.find(x=>x.link&&/drive\.google/.test(x.link));
+  const isUrlOnly=x=>!x.text;
+  const items=dong.filter(x=>x!==src&&x.text&&!/^這個包含/.test(x.text));
+  return `<h1 class="day-title" style="margin-top:6px">冬冬條碼</h1>
+  <p class="note">結帳時給店員掃。手機亮度調高，掃不到時可以打開原始檔。</p>
+  <div class="cards" style="margin-top:12px">${BARCODES.map(b=>{const bits=b.type==='ean13'?ean13Bits(b.code):code128cBits(b.code);
+    return `<article class="card"><h3>${esc(b.name)}</h3><p class="note">${esc(b.where)}</p><div class="bc">${barcodeSVG(bits)}<div class="num">${esc(b.code)}</div></div></article>`}).join('')}</div>
+  ${src?`<div class="links" style="margin-top:12px"><a class="lk" href="${esc(src.link)}" target="_blank" rel="noopener">${ICON.link}原始條碼檔（含 BP 加油 QR code）</a></div>`:''}
+  <p class="note" style="margin-top:8px">條碼是依號碼重新產生的，出發前請先用手機掃碼 app 測試一次。</p>
+  ${items.length?`<h2 class="sec-h">冬冬的推薦與折扣</h2><div class="card"><ul class="plain">${items.map(x=>`<li>${esc(x.text)}${x.link?` <a href="${esc(x.link)}" target="_blank" rel="noopener">連結</a>`:''}</li>`).join('')}</ul></div>`:''}`;
+}
+
+/* ------------------ 路由 ------------------ */
+function render(){
+  const h=location.hash.replace('#','');
+  let r='home', html;
+  const m=h.match(/^day-(\d+)$/);
+  if(m){r='day';html=dayView(+m[1])}
+  else if(h==='transport'||h==='flights'){r='transport';html=transportView()}
+  else if(h==='stays'){r='stays';html=staysView()}
+  else if(h==='list'){r='list';html=listView()}
+  else if(h==='barcode'){r='barcode';html=barcodeView()}
+  else html=home();
+  $app.innerHTML=html;
+  document.querySelectorAll('.tab').forEach(a=>{if(a.dataset.r===r)a.setAttribute('aria-current','page');else a.removeAttribute('aria-current')});
+  const cur=document.querySelector('.strip [aria-current]'); if(cur) cur.scrollIntoView({block:'nearest',inline:'center'});
+}
+$app.addEventListener('click',e=>{
+  const b=e.target.closest('.seg button'); if(!b) return;
+  view=b.dataset.v; store.set('view',view); const y=window.scrollY; render(); window.scrollTo(0,y);
+});
+$app.addEventListener('change',e=>{
+  const c=e.target.closest('input[data-id]'); if(!c) return;
+  const done=store.get('check',{}); done[c.dataset.id]=c.checked; store.set('check',done);
+});
+window.addEventListener('hashchange',()=>{render();window.scrollTo(0,0)});
+if(C128.length!==107) console.error('Code128 table length',C128.length);
+render();
+</script>
+
+</body>
+</html>
